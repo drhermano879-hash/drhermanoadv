@@ -1,0 +1,35 @@
+# Tasks — Hermano Sousa Advogados
+
+- `[x]` Inicializar projeto Vite + React + TypeScript
+- `[x]` Instalar dependências (Tailwind, fontes, ícones)
+- `[x]` Configurar tailwind.config.ts com design tokens
+- `[x]` Criar logo SVG placeholder
+- `[x]` Criar componentes UI base (Button, SectionTitle, Card)
+- `[x]` Criar hook useScrollHeader
+- `[x]` Criar Header.tsx
+- `[x]` Criar Footer.tsx
+- `[x]` Criar WhatsAppFloat.tsx
+- `[x]` Criar Hero.tsx
+- `[x]` Criar About.tsx
+- `[x]` Criar PracticeAreas.tsx
+- `[x]` Criar Differentials.tsx
+- `[x]` Criar Process.tsx
+- `[x]` Criar Testimonials.tsx (removido para adequação OAB)
+- `[x]` Criar Solutions.tsx (estudos de caso técnicos para adequação OAB)
+- `[x]` Criar CtaFinal.tsx
+- `[x]` Criar Home.tsx (página principal)
+- `[x]` Atualizar App.tsx e index.html (SEO, Schema.org, favicon)
+- `[x]` Refatorar menu mobile em `Header.tsx` (unificar Framer Motion e remover delays)
+- `[x]` Instalar `react-router-dom` e `@types/react-router-dom`
+- `[x]` Criar base de dados das áreas de atuação em `src/data/areasData.ts` (com cópia SEO estendida)
+- `[x]` Criar componente de página dinâmica em `src/pages/AreaDetail.tsx` (com blindagem 404)
+- `[x]` Configurar roteamento em `src/App.tsx` e `src/main.tsx` (incluindo `ScrollToTop` trigger)
+- `[x]` Atualizar cards de `PracticeAreas.tsx` para ligarem às respectivas rotas
+- `[x]` Implementar blindagem de formulário (sanitização, honeypot antispam, validação estrita de tipos) em `CtaFinal.tsx`
+- `[x]` Auditar e aplicar `rel="noopener noreferrer"` em todos os links `target="_blank"`
+- `[x]` Ajustar botão do WhatsAppFloat para ter comportamento responsivo (caixa de chat não abre auto no mobile, ícone pulsa e mostra tooltip de 3s "Falar com Especialista")
+- `[x]` Atualizar texto do botão principal do Hero para "Falar com Especialista" e direcionar direto ao WhatsApp
+- `[x]` Criar e implementar componente de FAQ com animação Accordion em `src/components/sections/Faq.tsx`
+- `[x]` Criar e implementar Topbar institucional animada (encolhe no scroll) em `Header.tsx`
+- `[x]` Refatorar Footer.tsx para ter um layout institucional luxuoso de 4 colunas com links de rotas dinâmicas, registro OAB/BA e termos de privacidade
+- `[x]` Rodar `npm run build` para validar tudo. ✅ Built in 2.55s — sem erros
