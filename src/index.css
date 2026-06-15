@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-wine-950: #0D0207;
-  --color-wine-900: #1A0509;
-  --color-wine-800: #3B0A1A;
-  --color-wine-700: #5C1228;
-  --color-wine-600: #7A1835;
-  --color-wine-500: #8B1A3A;
+  --color-wine-950: #1A0000;
+  --color-wine-900: #2B0000;
+  --color-wine-800: #4D0000;
+  --color-wine-700: #800000;
+  --color-wine-600: #660000;
+  --color-wine-500: #800000;
 
   --color-silver-400: #C0C0C0;
   --color-silver-500: #A8A8A8;
@@ -55,17 +55,17 @@ h1, h2, h3, h4 {
 /* Elegant thin scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #F9F6F1; }
-::-webkit-scrollbar-thumb { background: #5C1228; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #800000; border-radius: 2px; }
 
 /* Focus ring */
 :focus-visible {
-  outline: 1px solid #5C1228;
+  outline: 1px solid #800000;
   outline-offset: 3px;
 }
 
 /* Selection color */
 ::selection {
-  background: #5C1228;
+  background: #800000;
   color: white;
 }
 

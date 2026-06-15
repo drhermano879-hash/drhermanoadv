@@ -25,7 +25,7 @@ export default function Hero() {
           <span className="block text-[3rem] sm:text-[3.8rem] md:text-[4.4rem] lg:text-[4.6rem] xl:text-[5.4rem] font-medium leading-[1.08] tracking-[-0.03em]">
             Hermano Sousa
           </span>
-          <span className="block text-xs sm:text-sm font-sans tracking-[0.35em] uppercase text-[#8B1A3A] font-semibold mt-4">
+          <span className="block text-xs sm:text-sm font-sans tracking-[0.35em] uppercase text-[#800000] font-semibold mt-4">
             Advogados Associados
           </span>
         </motion.h1>
@@ -83,7 +83,7 @@ export default function Hero() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-[#5C1228] hover:bg-[#3B0A1A] text-white text-[13px] tracking-[0.08em] uppercase font-semibold px-10 py-4.5 rounded-xl transition-all duration-300 shadow-md shadow-[#5C1228]/10 text-center cursor-pointer"
+            className="inline-flex items-center justify-center bg-[#800000] hover:bg-[#4D0000] text-white text-[13px] tracking-[0.08em] uppercase font-semibold px-10 py-4.5 rounded-xl transition-all duration-300 shadow-md shadow-[#800000]/10 text-center cursor-pointer"
             id="hero-cta-agendar"
           >
             Falar com Especialista
@@ -94,11 +94,11 @@ export default function Hero() {
               e.preventDefault()
               document.querySelector('#sobre')?.scrollIntoView({ behavior: 'smooth' })
             }}
-            className="inline-flex items-center justify-center gap-2 text-[#2D2D2D] hover:text-[#5C1228] text-[13px] tracking-[0.08em] uppercase font-semibold py-3 transition-colors duration-300 group text-center"
+            className="inline-flex items-center justify-center gap-2 text-[#2D2D2D] hover:text-[#800000] text-[13px] tracking-[0.08em] uppercase font-semibold py-3 transition-colors duration-300 group text-center"
             id="hero-cta-sobre"
           >
             Conhecer Escritório
-            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1 text-[#8B1A3A]" />
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1 text-[#800000]" />
           </a>
         </motion.div>
 
@@ -109,7 +109,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.58, ease: [0.16, 1, 0.3, 1] }}
           className="text-[11px] text-[#828282] tracking-wide mt-6 flex items-center gap-1 select-none"
         >
-          <MapPin size={12} className="text-[#8B1A3A] shrink-0" />
+          <MapPin size={12} className="text-[#800000] shrink-0" />
           <span>Sede institucional no Centro Administrativo de Camaçari - BA. Atendimento presencial e digital em todo o país.</span>
         </motion.div>
       </div>

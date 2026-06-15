@@ -57,7 +57,7 @@ export default function Header() {
     >
       {/* Topbar Institucional */}
       <div
-        className={`bg-[#3B0A1A] w-full text-white overflow-hidden transition-all duration-300 flex items-center justify-end gap-6 px-8 lg:px-12 select-text ${
+        className={`bg-[#4D0000] w-full text-white overflow-hidden transition-all duration-300 flex items-center justify-end gap-6 px-8 lg:px-12 select-text ${
           menuOpen ? 'h-0 opacity-0' : 'h-10 opacity-100 border-b border-white/[0.03]'
         }`}
       >
@@ -85,7 +85,7 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', ease: 'easeInOut', duration: 0.25 }}
-            className="fixed inset-0 z-50 bg-[#0D0207] flex flex-col justify-between px-8 pt-28 pb-12 w-full h-screen"
+            className="fixed inset-0 z-50 bg-[#1A0000] flex flex-col justify-between px-8 pt-28 pb-12 w-full h-screen"
           >
             {/* Navigation links container */}
             <nav className="flex flex-col gap-5 mt-6 overflow-y-auto max-h-[60vh] pr-4">
@@ -96,7 +96,7 @@ export default function Header() {
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href) }}
                   className="font-display text-2xl text-[#F9F6F1]/80 hover:text-white hover:pl-2 tracking-wide block transition-all duration-300"
                 >
-                  <span className="text-[10px] font-sans tracking-[0.2em] text-[#8B1A3A] mr-4 font-semibold">
+                  <span className="text-[10px] font-sans tracking-[0.2em] text-[#800000] mr-4 font-semibold">
                     0{idx + 1}
                   </span>
                   {link.label}
@@ -110,7 +110,7 @@ export default function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMenuOpen(false)}
-                  className="inline-flex items-center justify-center bg-[#5C1228] hover:bg-[#3B0A1A] text-white text-xs tracking-[0.15em] uppercase font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 w-full"
+                  className="inline-flex items-center justify-center bg-[#800000] hover:bg-[#4D0000] text-white text-xs tracking-[0.15em] uppercase font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 w-full"
                 >
                   Fale com o especialista
                 </a>
@@ -162,7 +162,7 @@ export default function Header() {
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); scrollTo(link.href) }}
                 onMouseEnter={() => setHoveredIdx(idx)}
-                className={`relative py-2 text-neutral-700 hover:text-[#5C1228] text-xs tracking-wider font-medium transition-all duration-300 ${
+                className={`relative py-2 text-neutral-700 hover:text-[#800000] text-xs tracking-wider font-medium transition-all duration-300 ${
                   hoveredIdx !== null && hoveredIdx !== idx ? 'opacity-40' : 'opacity-100'
                 }`}
               >
@@ -170,7 +170,7 @@ export default function Header() {
                 {hoveredIdx === idx && (
                   <motion.span
                     layoutId="navHoverLine"
-                    className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#5C1228]"
+                    className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#800000]"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -184,7 +184,7 @@ export default function Header() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[#5C1228] hover:bg-[#3B0A1A] text-white text-xs tracking-wider font-medium px-5 py-2.5 rounded-xl shadow-sm hover:shadow hover:scale-[1.02] active:scale-100 transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center justify-center bg-[#800000] hover:bg-[#4D0000] text-white text-xs tracking-wider font-medium px-5 py-2.5 rounded-xl shadow-sm hover:shadow hover:scale-[1.02] active:scale-100 transition-all duration-300 cursor-pointer"
               id="header-cta"
             >
               Fale com o especialista

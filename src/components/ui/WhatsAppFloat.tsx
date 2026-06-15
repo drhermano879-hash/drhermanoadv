@@ -56,11 +56,11 @@ export default function WhatsAppFloat() {
             className="w-[calc(100vw-3rem)] sm:w-[360px] bg-white rounded-2xl shadow-2xl border border-black/[0.04] overflow-hidden origin-bottom-right"
           >
             {/* Cabeçalho do Chat */}
-            <div className="bg-[#5C1228] px-5 py-4 flex items-center justify-between text-white">
+            <div className="bg-[#800000] px-5 py-4 flex items-center justify-between text-white">
               <div className="flex items-center gap-3">
                 <div className="relative w-9 h-9 rounded-full bg-white/10 flex items-center justify-center border border-white/10">
                   <MessageCircle size={18} className="text-white" fill="currentColor" />
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#25D366] border-2 border-[#5C1228]" />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#25D366] border-2 border-[#800000]" />
                 </div>
                 <div>
                   <h4 className="font-display text-xs sm:text-sm font-semibold tracking-wide leading-tight">
@@ -100,7 +100,7 @@ export default function WhatsAppFloat() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 bg-[#5C1228] hover:bg-[#7A1835] text-white font-medium text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-100"
+                className="w-full py-3 bg-[#800000] hover:bg-[#660000] text-white font-medium text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-100"
               >
                 <MessageCircle size={16} fill="currentColor" />
                 Falar com Especialista

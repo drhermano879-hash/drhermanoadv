@@ -49,7 +49,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[#3B0A1A] text-white/80 select-text border-t border-white/5" role="contentinfo">
+    <footer className="bg-[#4D0000] text-white/80 select-text border-t border-white/5" role="contentinfo">
       
       {/* Main Grid Area */}
       <div className="max-w-7xl mx-auto px-8 lg:px-12 py-20 lg:py-28">
@@ -148,7 +148,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Copyright Bar */}
-      <div className="border-t border-white/10 bg-[#2A0713] select-none">
+      <div className="border-t border-white/10 bg-[#330000] select-none">
         <div className="max-w-7xl mx-auto px-8 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex flex-col gap-2 items-start">
             <div className="flex flex-wrap gap-4 text-xs text-white/50 items-center">

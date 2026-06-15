@@ -49,7 +49,7 @@ export default function Process() {
   return (
     <section
       id="processo"
-      className="py-28 lg:py-36 bg-[#3B0A1A] relative overflow-hidden"
+      className="py-28 lg:py-36 bg-[#4D0000] relative overflow-hidden"
       aria-labelledby="processo-titulo"
     >
       {/* Subtle background lines */}
@@ -85,7 +85,7 @@ export default function Process() {
               whileInView={{ width: "100%" }}
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="h-full bg-[#8B1A3A]"
+              className="h-full bg-[#800000]"
             />
           </div>
 
@@ -100,14 +100,14 @@ export default function Process() {
               <motion.div
                 key={step.n}
                 variants={itemVariants}
-                className="group relative bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] hover:border-[#8B1A3A]/40 rounded-xl p-8 flex flex-col justify-between min-h-[250px] hover:-translate-y-1 transition-all duration-300 shadow-lg cursor-default overflow-hidden"
+                className="group relative bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] hover:border-[#800000]/40 rounded-xl p-8 flex flex-col justify-between min-h-[250px] hover:-translate-y-1 transition-all duration-300 shadow-lg cursor-default overflow-hidden"
               >
                 {/* Top Row: Number & Dot */}
                 <div className="flex items-center justify-between z-10">
                   <span className="font-display text-4xl font-semibold text-white/20 group-hover:text-white/90 transition-colors duration-300 leading-none select-none">
                     {step.n}
                   </span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#8B1A3A]/40 group-hover:bg-[#8B1A3A] group-hover:scale-125 transition-all duration-300" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#800000]/40 group-hover:bg-[#800000] group-hover:scale-125 transition-all duration-300" />
                 </div>
 
                 {/* Bottom Row: Content */}

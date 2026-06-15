@@ -19,7 +19,7 @@ export default function Founder() {
             className="lg:col-span-7 flex flex-col gap-6 order-2 lg:order-1 select-text"
           >
             {/* Eyebrow */}
-            <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-1">
+            <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-1">
               O Fundador
             </p>
 
@@ -32,7 +32,7 @@ export default function Founder() {
             </h2>
 
             {/* Subtitle */}
-            <h3 className="font-display text-lg lg:text-xl text-[#8B1A3A] font-normal leading-relaxed">
+            <h3 className="font-display text-lg lg:text-xl text-[#800000] font-normal leading-relaxed">
               Dr. Hermano Sousa — Especialização, ética e dedicação intransigente à justiça social.
             </h3>
 

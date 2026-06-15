@@ -3,8 +3,8 @@
 // Then update the imports in Header.tsx, Hero.tsx and Footer.tsx
 
 const LogoPlaceholder = ({ variant = 'light', className = '' }: { variant?: 'light' | 'dark', className?: string }) => {
-  const textColor = variant === 'light' ? '#C0C0C0' : '#5C1228'
-  const subColor = variant === 'light' ? '#A8A8A8' : '#7A1835'
+  const textColor = variant === 'light' ? '#C0C0C0' : '#800000'
+  const subColor = variant === 'light' ? '#A8A8A8' : '#660000'
 
   return (
     <svg

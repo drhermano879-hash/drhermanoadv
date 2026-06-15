@@ -25,7 +25,7 @@ export default function SectionTitle({
     <div className={`flex flex-col gap-3 ${alignClass} ${className}`}>
       {eyebrow && (
         <span className={`text-xs font-semibold tracking-[3px] uppercase ${
-          light ? 'text-[#C0C0C0]/70' : 'text-[#5C1228]'
+          light ? 'text-[#C0C0C0]/70' : 'text-[#800000]'
         }`}>
           {eyebrow}
         </span>
@@ -37,9 +37,9 @@ export default function SectionTitle({
       </h2>
       {/* Decorative line */}
       <div className={`flex items-center gap-3 ${align === 'center' ? 'justify-center' : ''}`}>
-        <span className={`h-px w-12 ${light ? 'bg-[#C0C0C0]/40' : 'bg-[#5C1228]'}`} />
-        <span className={`w-2 h-2 rounded-full ${light ? 'bg-[#C0C0C0]/40' : 'bg-[#5C1228]'}`} />
-        <span className={`h-px w-12 ${light ? 'bg-[#C0C0C0]/40' : 'bg-[#5C1228]'}`} />
+        <span className={`h-px w-12 ${light ? 'bg-[#C0C0C0]/40' : 'bg-[#800000]'}`} />
+        <span className={`w-2 h-2 rounded-full ${light ? 'bg-[#C0C0C0]/40' : 'bg-[#800000]'}`} />
+        <span className={`h-px w-12 ${light ? 'bg-[#C0C0C0]/40' : 'bg-[#800000]'}`} />
       </div>
       {subtitle && (
         <p className={`text-base sm:text-lg leading-relaxed max-w-2xl ${

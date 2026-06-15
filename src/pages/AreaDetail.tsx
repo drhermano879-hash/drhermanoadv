@@ -60,7 +60,7 @@ export default function AreaDetail() {
         <Header />
         <main className="bg-[#FDFAF6] min-h-[70vh] pt-40 pb-24 flex items-center justify-center select-none" role="alert" aria-label="Página não encontrada">
           <div className="max-w-md w-full px-8 text-center flex flex-col items-center gap-6">
-            <div className="w-16 h-16 rounded-full bg-[#8B1A3A]/5 flex items-center justify-center text-[#8B1A3A] mb-2">
+            <div className="w-16 h-16 rounded-full bg-[#800000]/5 flex items-center justify-center text-[#800000] mb-2">
               <Shield size={28} />
             </div>
             <h1 className="font-display text-3xl font-medium text-[#1A1A1A]">
@@ -71,7 +71,7 @@ export default function AreaDetail() {
             </p>
             <Link
               to="/"
-              className="inline-flex items-center justify-center gap-2 bg-[#5C1228] hover:bg-[#3B0A1A] text-white text-[13px] tracking-[0.08em] uppercase font-semibold px-8 py-3.5 rounded-xl transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 bg-[#800000] hover:bg-[#4D0000] text-white text-[13px] tracking-[0.08em] uppercase font-semibold px-8 py-3.5 rounded-xl transition-all duration-300"
             >
               Voltar para o Início
             </Link>
@@ -101,7 +101,7 @@ export default function AreaDetail() {
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-neutral-500 hover:text-[#5C1228] text-xs font-semibold tracking-wider uppercase transition-colors duration-300 group"
+              className="inline-flex items-center gap-2 text-neutral-500 hover:text-[#800000] text-xs font-semibold tracking-wider uppercase transition-colors duration-300 group"
             >
               <ArrowLeft size={14} className="transition-transform duration-300 group-hover:-translate-x-1" />
               Voltar para o Início
@@ -117,8 +117,8 @@ export default function AreaDetail() {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="flex items-center gap-2.5 mb-6"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#8B1A3A]" />
-                <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#800000]" />
+                <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold">
                   Área de Especialidade
                 </p>
               </motion.div>
@@ -150,7 +150,7 @@ export default function AreaDetail() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#5C1228] hover:bg-[#3B0A1A] text-white text-[13px] tracking-[0.08em] uppercase font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-100 shadow-md shadow-[#5C1228]/10"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#800000] hover:bg-[#4D0000] text-white text-[13px] tracking-[0.08em] uppercase font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-100 shadow-md shadow-[#800000]/10"
                 >
                   <MessageCircle size={16} fill="currentColor" />
                   Falar com Especialista
@@ -200,10 +200,10 @@ export default function AreaDetail() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="flex items-center gap-4 bg-white border border-neutral-200/40 p-5 rounded-2xl shadow-sm hover:border-[#8B1A3A]/20 transition-all duration-300"
+                    className="flex items-center gap-4 bg-white border border-neutral-200/40 p-5 rounded-2xl shadow-sm hover:border-[#800000]/20 transition-all duration-300"
                   >
-                    <div className="w-8 h-8 rounded-full bg-[#8B1A3A]/5 flex items-center justify-center shrink-0">
-                      <Check size={14} className="text-[#8B1A3A]" />
+                    <div className="w-8 h-8 rounded-full bg-[#800000]/5 flex items-center justify-center shrink-0">
+                      <Check size={14} className="text-[#800000]" />
                     </div>
                     <span className="text-sm font-sans font-medium text-neutral-700">
                       {item}
@@ -221,7 +221,7 @@ export default function AreaDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full bg-[#3B0A1A] rounded-3xl p-8 md:p-12 lg:p-16 text-center flex flex-col items-center gap-8 relative overflow-hidden"
+            className="w-full bg-[#4D0000] rounded-3xl p-8 md:p-12 lg:p-16 text-center flex flex-col items-center gap-8 relative overflow-hidden"
           >
             {/* Background geometric design */}
             <div className="absolute inset-0 opacity-[0.02]" aria-hidden="true"
@@ -244,7 +244,7 @@ export default function AreaDetail() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#FDFAF6] hover:bg-white text-[#5C1228] text-xs sm:text-sm font-semibold tracking-wider uppercase px-8 py-3.5 rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-100 shadow-lg relative z-10"
+              className="inline-flex items-center justify-center gap-2 bg-[#FDFAF6] hover:bg-white text-[#800000] text-xs sm:text-sm font-semibold tracking-wider uppercase px-8 py-3.5 rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-100 shadow-lg relative z-10"
             >
               <MessageCircle size={16} fill="currentColor" />
               Conversar pelo WhatsApp

@@ -60,7 +60,7 @@ const inputClass = (err?: string) =>
   `w-full px-4 py-3.5 text-sm bg-neutral-50 border rounded-xl focus:bg-white focus:outline-none focus:ring-2 transition-all duration-200 ${
     err 
       ? 'border-red-400 text-red-900 focus:border-red-400 focus:ring-red-400/10 placeholder:text-red-300' 
-      : 'border-neutral-200/60 text-[#1A1A1A] focus:border-[#5C1228] focus:ring-[#5C1228]/10 placeholder:text-neutral-400/80'
+      : 'border-neutral-200/60 text-[#1A1A1A] focus:border-[#800000] focus:ring-[#800000]/10 placeholder:text-neutral-400/80'
   }`
 
 export default function CtaFinal() {
@@ -123,7 +123,7 @@ export default function CtaFinal() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-20 max-w-3xl mx-auto"
         >
-          <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-5">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-5">
             Contato
           </p>
           <h2
@@ -152,19 +152,19 @@ export default function CtaFinal() {
             <div className="flex flex-col gap-6">
               {[
                 {
-                  icon: <Phone size={16} className="text-[#8B1A3A]" />,
+                  icon: <Phone size={16} className="text-[#800000]" />,
                   label: 'TELEFONE',
                   value: '(XX) XXXX-XXXX',
                   href: 'tel:+5500000000000',
                 },
                 {
-                  icon: <MessageSquare size={16} className="text-[#8B1A3A]" />,
+                  icon: <MessageSquare size={16} className="text-[#800000]" />,
                   label: 'WHATSAPP',
                   value: '(XX) XXXXX-XXXX',
                   href: 'https://wa.me/5500000000000',
                 },
                 {
-                  icon: <Mail size={16} className="text-[#8B1A3A]" />,
+                  icon: <Mail size={16} className="text-[#800000]" />,
                   label: 'E-MAIL',
                   value: 'contato@hermanosousa.adv.br',
                   href: 'mailto:contato@hermanosousa.adv.br',
@@ -177,12 +177,12 @@ export default function CtaFinal() {
                   rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="flex items-center gap-5 group"
                 >
-                  <div className="w-10 h-10 border border-neutral-200/60 rounded-xl flex items-center justify-center bg-white shadow-sm group-hover:border-[#8B1A3A] transition-all duration-300">
+                  <div className="w-10 h-10 border border-neutral-200/60 rounded-xl flex items-center justify-center bg-white shadow-sm group-hover:border-[#800000] transition-all duration-300">
                     {item.icon}
                   </div>
                   <div>
                     <p className="tracking-wider text-[10px] font-semibold text-neutral-400">{item.label}</p>
-                    <p className="text-sm text-neutral-700 font-light group-hover:text-[#8B1A3A] transition-colors duration-300">{item.value}</p>
+                    <p className="text-sm text-neutral-700 font-light group-hover:text-[#800000] transition-colors duration-300">{item.value}</p>
                   </div>
                 </a>
               ))}
@@ -191,7 +191,7 @@ export default function CtaFinal() {
             {/* Hours info */}
             <div className="border-t border-neutral-200/80 pt-6 flex items-start gap-5">
               <div className="w-10 h-10 border border-neutral-200/60 rounded-xl flex items-center justify-center bg-white shadow-sm">
-                <Clock size={16} className="text-[#8B1A3A]" />
+                <Clock size={16} className="text-[#800000]" />
               </div>
               <div>
                 <p className="tracking-wider text-[10px] font-semibold text-neutral-400">HORÁRIO</p>
@@ -211,14 +211,14 @@ export default function CtaFinal() {
             <div className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-neutral-200/40">
               {submitted ? (
                 <div className="flex flex-col items-center text-center gap-6 py-12">
-                  <CheckCircle size={36} className="text-[#5C1228]" />
+                  <CheckCircle size={36} className="text-[#800000]" />
                   <div>
                     <h3 className="font-display text-2xl font-semibold text-[#1A1A1A] mb-2">Mensagem recebida.</h3>
                     <p className="text-neutral-500 text-sm leading-relaxed font-light">Retornaremos em até 24 horas úteis.</p>
                   </div>
                   <button
                     onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', area: '', message: '' }) }}
-                    className="text-sm text-[#5C1228] hover:underline cursor-pointer"
+                    className="text-sm text-[#800000] hover:underline cursor-pointer"
                   >
                     Enviar nova mensagem
                   </button>
@@ -309,7 +309,7 @@ export default function CtaFinal() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2.5 bg-[#5C1228] hover:bg-[#3B0A1A] disabled:bg-[#5C1228]/50 text-white text-[13px] tracking-[0.08em] uppercase font-semibold py-4 rounded-xl transition-colors duration-300 mt-2 cursor-pointer shadow-sm hover:shadow"
+                    className="w-full flex items-center justify-center gap-2.5 bg-[#800000] hover:bg-[#4D0000] disabled:bg-[#800000]/50 text-white text-[13px] tracking-[0.08em] uppercase font-semibold py-4 rounded-xl transition-colors duration-300 mt-2 cursor-pointer shadow-sm hover:shadow"
                     id="form-submit-btn"
                   >
                     {isSubmitting ? (

@@ -23,7 +23,7 @@ export default function PoliticaCookies() {
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-neutral-500 hover:text-[#5C1228] text-xs font-semibold tracking-wider uppercase transition-colors duration-300 group"
+              className="inline-flex items-center gap-2 text-neutral-500 hover:text-[#800000] text-xs font-semibold tracking-wider uppercase transition-colors duration-300 group"
             >
               <ArrowLeft size={14} className="transition-transform duration-300 group-hover:-translate-x-1" />
               Voltar para o Início
@@ -38,8 +38,8 @@ export default function PoliticaCookies() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="flex items-center gap-2 mb-4"
             >
-              <Shield size={14} className="text-[#8B1A3A]" />
-              <span className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold">
+              <Shield size={14} className="text-[#800000]" />
+              <span className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold">
                 Navegação Segura
               </span>
             </motion.div>

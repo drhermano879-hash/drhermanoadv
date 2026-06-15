@@ -66,7 +66,7 @@ export default function Differentials() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-20"
         >
-          <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-5">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-5">
             Diferenciais
           </p>
           <h2
@@ -89,16 +89,16 @@ export default function Differentials() {
             <motion.div
               key={item.n}
               variants={itemVariants}
-              className={`group relative bg-[#FDFAF6]/50 border border-neutral-200/35 rounded-2xl p-8 lg:p-10 flex flex-col justify-between min-h-[220px] hover:border-[#8B1A3A]/30 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md cursor-default overflow-hidden ${item.cols}`}
+              className={`group relative bg-[#FDFAF6]/50 border border-neutral-200/35 rounded-2xl p-8 lg:p-10 flex flex-col justify-between min-h-[220px] hover:border-[#800000]/30 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md cursor-default overflow-hidden ${item.cols}`}
             >
               {/* Giant number absolute background */}
-              <span className="absolute bottom-4 right-6 font-display text-8xl md:text-9xl font-bold text-[#8B1A3A]/[0.03] group-hover:text-[#8B1A3A]/[0.06] select-none pointer-events-none transition-colors duration-300 leading-none">
+              <span className="absolute bottom-4 right-6 font-display text-8xl md:text-9xl font-bold text-[#800000]/[0.03] group-hover:text-[#800000]/[0.06] select-none pointer-events-none transition-colors duration-300 leading-none">
                 {item.n}
               </span>
 
               {/* Content (Top elements) */}
               <div className="flex flex-col gap-4 z-10">
-                <h3 className="font-display text-xl font-medium text-[#1A1A1A] tracking-tight group-hover:text-[#5C1228] transition-colors duration-300">
+                <h3 className="font-display text-xl font-medium text-[#1A1A1A] tracking-tight group-hover:text-[#800000] transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="text-sm text-neutral-500 font-light leading-relaxed max-w-[90%] group-hover:text-neutral-800 transition-colors duration-300">
@@ -107,7 +107,7 @@ export default function Differentials() {
               </div>
 
               {/* Subtle visual accent bottom line */}
-              <div className="w-12 h-1 bg-[#8B1A3A]/0 group-hover:bg-[#8B1A3A]/20 transition-all duration-500 mt-8 rounded-full z-10" />
+              <div className="w-12 h-1 bg-[#800000]/0 group-hover:bg-[#800000]/20 transition-all duration-500 mt-8 rounded-full z-10" />
             </motion.div>
           ))}
         </motion.div>

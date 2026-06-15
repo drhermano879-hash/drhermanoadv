@@ -73,7 +73,7 @@ export default function Team() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-20 max-w-3xl"
         >
-          <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-5">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-5">
             Corpo Técnico
           </p>
           <h2
@@ -112,7 +112,7 @@ export default function Team() {
             {/* Founder details */}
             <div className="flex flex-col gap-3 pl-1 select-text">
               <div>
-                <p className="tracking-wider text-[10px] font-semibold text-[#8B1A3A] uppercase">Sócio Fundador & Diretor Jurídico</p>
+                <p className="tracking-wider text-[10px] font-semibold text-[#800000] uppercase">Sócio Fundador & Diretor Jurídico</p>
                 <h3 className="font-display text-2xl font-medium text-[#1A1A1A] mt-1">Dr. Hermano Sousa</h3>
               </div>
               <p className="text-sm text-neutral-500 font-light leading-relaxed text-justify">
@@ -133,7 +133,7 @@ export default function Team() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="group relative bg-white p-5 rounded-2xl border border-neutral-200/40 shadow-sm hover:border-[#8B1A3A]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col gap-5 cursor-default overflow-hidden"
+                className="group relative bg-white p-5 rounded-2xl border border-neutral-200/40 shadow-sm hover:border-[#800000]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col gap-5 cursor-default overflow-hidden"
               >
                 {/* Associate Photo */}
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-neutral-100">
@@ -152,7 +152,7 @@ export default function Team() {
                 {/* Associate details */}
                 <div className="flex items-start justify-between gap-3 select-text">
                   <div className="flex flex-col gap-1.5">
-                    <h4 className="font-display text-lg font-medium text-[#1A1A1A] leading-tight group-hover:text-[#5C1228] transition-colors duration-300">
+                    <h4 className="font-display text-lg font-medium text-[#1A1A1A] leading-tight group-hover:text-[#800000] transition-colors duration-300">
                       {item.name}
                     </h4>
                     <p className="text-xs text-neutral-500 font-light leading-snug">
@@ -165,7 +165,7 @@ export default function Team() {
                     href={item.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 border border-neutral-200/60 rounded-xl bg-neutral-50/50 hover:bg-neutral-50 text-neutral-400 hover:text-[#8B1A3A] transition-all duration-300 shrink-0 cursor-pointer flex items-center justify-center"
+                    className="p-2.5 border border-neutral-200/60 rounded-xl bg-neutral-50/50 hover:bg-neutral-50 text-neutral-400 hover:text-[#800000] transition-all duration-300 shrink-0 cursor-pointer flex items-center justify-center"
                     aria-label={`LinkedIn profissional de ${item.name}`}
                   >
                     <LinkedinIcon />

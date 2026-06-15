@@ -23,7 +23,7 @@ export default function PoliticaPrivacidade() {
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-neutral-500 hover:text-[#5C1228] text-xs font-semibold tracking-wider uppercase transition-colors duration-300 group"
+              className="inline-flex items-center gap-2 text-neutral-500 hover:text-[#800000] text-xs font-semibold tracking-wider uppercase transition-colors duration-300 group"
             >
               <ArrowLeft size={14} className="transition-transform duration-300 group-hover:-translate-x-1" />
               Voltar para o Início
@@ -38,8 +38,8 @@ export default function PoliticaPrivacidade() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="flex items-center gap-2 mb-4"
             >
-              <Shield size={14} className="text-[#8B1A3A]" />
-              <span className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold">
+              <Shield size={14} className="text-[#800000]" />
+              <span className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold">
                 Conformidade Legal
               </span>
             </motion.div>
@@ -103,7 +103,7 @@ export default function PoliticaPrivacidade() {
               </h2>
               <p>
                 Você possui o direito legal de solicitar a qualquer momento a confirmação, correção ou exclusão definitiva dos seus dados dos nossos registros de atendimento através do e-mail{' '}
-                <a href="mailto:contato@hermanosousa.adv.br" className="text-[#8B1A3A] hover:underline font-normal">
+                <a href="mailto:contato@hermanosousa.adv.br" className="text-[#800000] hover:underline font-normal">
                   contato@hermanosousa.adv.br
                 </a>.
               </p>

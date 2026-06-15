@@ -60,7 +60,7 @@ export default function Gallery() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-20 max-w-2xl"
         >
-          <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-5">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-5">
             O Escritório
           </p>
           <h2

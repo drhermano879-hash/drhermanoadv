@@ -48,7 +48,7 @@ function Word({ text, highlight, progress, range }: WordProps) {
       {highlight && (
         <motion.span
           style={{ width, originX: 0 }}
-          className="absolute inset-y-0 left-0 bg-[#8B1A3A]/10 -z-10 rounded-sm"
+          className="absolute inset-y-0 left-0 bg-[#800000]/10 -z-10 rounded-sm"
         />
       )}
       {text}
@@ -157,7 +157,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10% 0px' }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-6"
+              className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-6"
             >
               Sobre o Escritório
             </motion.p>

@@ -51,7 +51,7 @@ export default function PracticeAreas() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-4 lg:sticky lg:top-32"
           >
-            <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-5">
+            <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-5">
               Atuação
             </p>
             <h2
@@ -82,21 +82,21 @@ export default function PracticeAreas() {
               >
                 <motion.div
                   variants={itemVariants}
-                  className="relative bg-white border border-neutral-200/40 rounded-xl p-8 lg:p-10 flex flex-col gap-6 hover:border-[#8B1A3A]/30 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md h-full overflow-hidden"
+                  className="relative bg-white border border-neutral-200/40 rounded-xl p-8 lg:p-10 flex flex-col gap-6 hover:border-[#800000]/30 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md h-full overflow-hidden"
                 >
                   {/* Card Header (Number + Mini indicator) */}
                   <div className="flex items-center justify-between">
-                    <span className="font-sans text-[11px] tracking-widest text-[#C8B8A8] group-hover:text-[#8B1A3A] font-semibold transition-colors duration-300">
+                    <span className="font-sans text-[11px] tracking-widest text-[#C8B8A8] group-hover:text-[#800000] font-semibold transition-colors duration-300">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     
                     {/* Subtle Wine Indicator Dot */}
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#8B1A3A]/0 group-hover:bg-[#8B1A3A] transition-all duration-300" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#800000]/0 group-hover:bg-[#800000] transition-all duration-300" />
                   </div>
 
                   {/* Card Content (Title & Description) */}
                   <div className="flex flex-col gap-3 flex-grow">
-                    <h3 className="font-display text-xl font-medium text-[#1A1A1A] tracking-tight group-hover:text-[#5C1228] transition-colors duration-300">
+                    <h3 className="font-display text-xl font-medium text-[#1A1A1A] tracking-tight group-hover:text-[#800000] transition-colors duration-300">
                       {area.label}
                     </h3>
                     <p className="text-sm text-neutral-500 font-light leading-relaxed group-hover:text-neutral-800 transition-colors duration-300">
@@ -105,7 +105,7 @@ export default function PracticeAreas() {
                   </div>
 
                   {/* Saiba mais button link */}
-                  <div className="mt-auto pt-2 flex items-center justify-start text-xs font-medium text-[#8B1A3A] group-hover:underline gap-1 transition-all duration-300">
+                  <div className="mt-auto pt-2 flex items-center justify-start text-xs font-medium text-[#800000] group-hover:underline gap-1 transition-all duration-300">
                     <span>Saiba mais</span>
                     <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </div>

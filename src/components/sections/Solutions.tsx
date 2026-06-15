@@ -57,7 +57,7 @@ export default function Solutions() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-20"
         >
-          <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-5">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-5">
             Estudos de Caso
           </p>
           <h2
@@ -83,13 +83,13 @@ export default function Solutions() {
               className="group border-t border-neutral-200/80 pt-8 pb-4 flex flex-col gap-6 cursor-default"
             >
               {/* Category indicator / number */}
-              <span className="font-sans text-[11px] tracking-widest text-[#C8B8A8] group-hover:text-[#8B1A3A] font-semibold transition-colors duration-300">
+              <span className="font-sans text-[11px] tracking-widest text-[#C8B8A8] group-hover:text-[#800000] font-semibold transition-colors duration-300">
                 CASO {item.n}
               </span>
 
               {/* Title & Description */}
               <div className="flex flex-col gap-4">
-                <h3 className="font-display text-xl font-medium text-[#1A1A1A] leading-snug tracking-tight group-hover:text-[#5C1228] transition-colors duration-300">
+                <h3 className="font-display text-xl font-medium text-[#1A1A1A] leading-snug tracking-tight group-hover:text-[#800000] transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="text-sm text-neutral-500 font-light leading-relaxed group-hover:text-neutral-800 transition-colors duration-300 font-light text-justify">

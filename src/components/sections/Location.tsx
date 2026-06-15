@@ -23,7 +23,7 @@ export default function Location() {
             className="lg:col-span-5 flex flex-col items-start gap-8"
           >
             <div>
-              <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-5">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-5">
                 Localização
               </p>
               <h2
@@ -56,7 +56,7 @@ export default function Location() {
               href={mapsSearchUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 border border-[#5C1228] text-[#5C1228] font-medium text-xs sm:text-sm rounded-xl hover:bg-[#5C1228] hover:text-white shadow-sm hover:shadow transition-all duration-300 hover:scale-[1.02] active:scale-100 cursor-pointer"
+              className="inline-flex items-center justify-center px-6 py-3 border border-[#800000] text-[#800000] font-medium text-xs sm:text-sm rounded-xl hover:bg-[#800000] hover:text-white shadow-sm hover:shadow transition-all duration-300 hover:scale-[1.02] active:scale-100 cursor-pointer"
             >
               Traçar Rota no Google Maps
             </a>

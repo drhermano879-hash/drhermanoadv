@@ -55,7 +55,7 @@ export default function Faq() {
         
         {/* Section Header */}
         <div className="text-center mb-16 lg:mb-20">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-[#8B1A3A] font-semibold mb-5">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-5">
             Dúvidas Comuns
           </p>
           <h2
@@ -78,16 +78,16 @@ export default function Faq() {
                 {/* Header (Question trigger) */}
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full py-6 md:py-8 flex items-center justify-between text-left gap-6 group hover:text-[#5C1228] transition-colors duration-300 cursor-pointer"
+                  className="w-full py-6 md:py-8 flex items-center justify-between text-left gap-6 group hover:text-[#800000] transition-colors duration-300 cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className={`font-display text-base md:text-lg font-medium transition-colors duration-300 ${isOpen ? 'text-[#5C1228]' : 'text-[#1A1A1A]'}`}>
+                  <span className={`font-display text-base md:text-lg font-medium transition-colors duration-300 ${isOpen ? 'text-[#800000]' : 'text-[#1A1A1A]'}`}>
                     {faq.question}
                   </span>
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-colors duration-300 ${isOpen ? 'border-[#8B1A3A]/30 bg-[#8B1A3A]/5 text-[#8B1A3A]' : 'border-neutral-200 text-neutral-400 group-hover:border-neutral-300 group-hover:text-neutral-600'}`}
+                    className={`shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-colors duration-300 ${isOpen ? 'border-[#800000]/30 bg-[#800000]/5 text-[#800000]' : 'border-neutral-200 text-neutral-400 group-hover:border-neutral-300 group-hover:text-neutral-600'}`}
                   >
                     <ChevronDown size={16} />
                   </motion.div>
