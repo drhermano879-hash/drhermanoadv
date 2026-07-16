@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 const areas = [
-  { slug: 'direito-previdenciario', label: 'Direito Previdenciário', description: 'Planejamento de aposentadorias, concessão de benefícios complexos e revisões estratégicas de alto valor.' },
-  { slug: 'direito-trabalhista', label: 'Direito Trabalhista', description: 'Defesa de direitos do trabalhador, rescisões, horas extras e compliance de alta gerência.' },
-  { slug: 'direito-do-consumidor', label: 'Direito do Consumidor', description: 'Ações contra práticas abusivas de bancos, fraudes e falhas graves na prestação de serviços.' },
-  { slug: 'direito-de-familia', label: 'Direito de Família', description: 'Divórcios, inventários, partilha de bens e planejamento sucessório com foco humanizado.' },
-  { slug: 'direito-civil', label: 'Direito Civil', description: 'Elaboração de contratos de alta complexidade, responsabilidade civil e negócios imobiliários.' },
-  { slug: 'direito-empresarial', label: 'Direito Empresarial', description: 'Estruturação societária, acordos de sócios, proteção patrimonial e fusões e aquisições.' },
+  { slug: 'direito-previdenciario', label: 'Previdenciário', description: 'Aposentadorias, benefícios por incapacidade, BPC/LOAS, pensão por morte, revisões e planejamento previdenciário.' },
+  { slug: 'direito-trabalhista', label: 'Trabalhista', description: 'Verbas rescisórias, horas extras, vínculo de emprego, adicionais, acidentes de trabalho, estabilidade e rescisão indireta.' },
+  { slug: 'direito-do-consumidor', label: 'Consumidor', description: 'Cobranças indevidas, negativação irregular, problemas bancários, contratos abusivos, falhas de serviço e indenizações.' },
+  { slug: 'direito-civil', label: 'Cível', description: 'Indenizações, cobranças, contratos, responsabilidade civil, obrigações, acordos e conflitos patrimoniais.' },
+  { slug: 'direito-empresarial', label: 'Empresarial', description: 'Contratos, cobranças, recuperação de crédito, prevenção de riscos, consultoria jurídica e demandas comerciais.' },
 ]
 
 export default function PracticeAreas() {

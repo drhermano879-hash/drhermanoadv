@@ -1,15 +1,12 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Shield } from 'lucide-react'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 
 export default function PoliticaPrivacidade() {
   return (
     <>
       <title>Política de Privacidade e Proteção de Dados | Hermano Sousa</title>
       <meta name="description" content="Saiba como tratamos suas informações de contato com absoluto sigilo profissional no Hermano Sousa Advogados Associados." />
-      <Header />
       
       <main id="main-content" className="bg-[#FDFAF6] min-h-screen pt-32 pb-24 select-text">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
@@ -103,8 +100,8 @@ export default function PoliticaPrivacidade() {
               </h2>
               <p>
                 Você possui o direito legal de solicitar a qualquer momento a confirmação, correção ou exclusão definitiva dos seus dados dos nossos registros de atendimento através do e-mail{' '}
-                <a href="mailto:contato@hermanosousa.adv.br" className="text-[#800000] hover:underline font-normal">
-                  contato@hermanosousa.adv.br
+                <a href="mailto:advogadohermano@gmail.com" className="text-[#800000] hover:underline font-normal">
+                  advogadohermano@gmail.com
                 </a>.
               </p>
             </div>
@@ -112,8 +109,6 @@ export default function PoliticaPrivacidade() {
 
         </div>
       </main>
-
-      <Footer />
     </>
   )
 }

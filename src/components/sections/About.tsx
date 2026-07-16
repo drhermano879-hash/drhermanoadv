@@ -1,5 +1,6 @@
 import { useRef, Fragment } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import aboutImg from '@/assets/drhermano916.webp'
 
 // Helper function to parse text and identify bracketed highlights [highlighted text]
 function parseText(text: string): { text: string; highlight: boolean }[] {
@@ -108,9 +109,9 @@ export default function About() {
   })
 
   // Texts with highlights demarcated by brackets [highlighted text]
-  const p1 = "Com mais de [29 anos de história,] o Hermano Sousa Advogados Associados consolidou-se como uma boutique jurídica altamente especializada. Nossa trajetória é pautada pelo compromisso de oferecer soluções de elite no âmbito previdenciário, aliando absoluto rigor analítico a um atendimento personalizado."
-  const p2 = "Estruturado de forma minuciosa em [12 setores especializados,] o escritório opera sob um modelo de gestão que garante profundidade técnica a cada demanda. Esta abordagem individualizada nos permitiu defender os interesses de mais de [3.000 clientes,] provendo segurança jurídica em momentos decisivos."
-  const p3 = "Nossa dedicação se traduz em resultados consistentes, mantendo um índice histórico de [90% de êxito] nas causas patrocinadas. Longe de clichês ou promessas infundadas, oferecemos solidez técnica e clareza analítica para conduzir cada cliente em direção ao êxito legal com integridade absoluta."
+  const p1 = "Fundado em [2016,] nosso escritório iniciou suas atividades com o propósito de oferecer atendimento jurídico responsável, acessível e comprometido com a realidade de cada cliente. Ao longo dos anos, consolidamos uma atuação marcada pela seriedade, pela escuta atenta e pela análise técnica dos casos, especialmente na área previdenciária. Atualmente, contamos com experiência acumulada em [mais de 2.000 processos,] atuando também nas áreas trabalhista, consumidor, cível e empresarial."
+  const p2 = "Nosso trabalho é voltado à [orientação clara,] à defesa responsável de direitos e à construção de [estratégias jurídicas adequadas] às necessidades de cada pessoa ou empresa atendida."
+  const p3 = "Mais do que acompanhar processos, buscamos oferecer [segurança, transparência e acolhimento] em momentos decisivos. Por isso, nosso atendimento é pautado pela ética, pelo sigilo profissional e pelo compromisso com a prestação de um serviço jurídico sério e humanizado, contribuindo com a comunidade por meio de uma [advocacia próxima, técnica e comprometida.]"
 
   const tokens1 = parseText(p1)
   const tokens2 = parseText(p2)
@@ -137,8 +138,8 @@ export default function About() {
               className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-black/[0.03] shadow-md shadow-black/[0.01]"
             >
               <img
-                src="/drhermano.webp"
-                alt="Dr. Hermano Sousa em seu escritório"
+                src={aboutImg}
+                alt="Dr. Hermano Sousa — Sobre o Escritório"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.03]"

@@ -3,27 +3,39 @@ import { motion } from 'framer-motion'
 const items = [
   {
     n: '01',
-    title: 'Gestão Individualizada',
-    text: 'Cada caso recebe análise minuciosa diretamente pelos sócios. Desenvolvemos estratégias jurídicas personalizadas, alinhadas aos fatos e desenhadas para o melhor desfecho possível.',
-    cols: 'md:col-span-3',
+    title: 'Equipe Preparada',
+    text: 'Profissionais selecionados e comprometidos com um atendimento jurídico responsável, organizado e humanizado.',
+    cols: 'lg:col-span-2',
   },
   {
     n: '02',
-    title: 'Clareza Operacional',
-    text: 'Comunicação transparente em cada fase processual, sem jargões. Nossos clientes compreendem cada andamento e têm acesso direto a relatórios simplificados e objetivos.',
-    cols: 'md:col-span-3',
+    title: 'Ética e Sigilo',
+    text: 'Todas as demandas são tratadas com discrição, responsabilidade profissional e sigilo absoluto.',
+    cols: 'lg:col-span-2',
   },
   {
     n: '03',
-    title: 'Rigor Científico e Pareceres',
-    text: 'Atuação pautada pela profundidade acadêmica e constante atualização. Elaboramos pareceres detalhados, peças robustas e sustentações de alto nível técnico.',
-    cols: 'md:col-span-2',
+    title: 'Foco Previdenciário',
+    text: 'Atuação destacada em Direito Previdenciário, com experiência em pedidos administrativos e judiciais perante o INSS.',
+    cols: 'lg:col-span-2',
   },
   {
     n: '04',
-    title: 'Foco Absoluto em Resultados',
-    text: 'Assumimos cada mandato com responsabilidade integral e dedicação contínua. Nosso trabalho se estende além dos prazos, visando a resolução efetiva e a segurança de seu patrimônio.',
-    cols: 'md:col-span-4',
+    title: 'Gestão Organizada',
+    text: 'Acompanhamento cuidadoso de prazos, documentos, movimentações processuais e etapas da demanda.',
+    cols: 'lg:col-span-2',
+  },
+  {
+    n: '05',
+    title: 'Atendimento Humanizado',
+    text: 'Escuta atenta, linguagem clara e análise individualizada de cada caso.',
+    cols: 'lg:col-span-2',
+  },
+  {
+    n: '06',
+    title: 'Experiência Consolidada',
+    text: 'Atuação desde 2016, com experiência acumulada em mais de 2.000 processos e forte presença na comunidade de Camaçari.',
+    cols: 'lg:col-span-2',
   },
 ]
 
@@ -83,7 +95,7 @@ export default function Differentials() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-10% 0px' }}
-          className="grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 md:gap-8"
         >
           {items.map((item) => (
             <motion.div

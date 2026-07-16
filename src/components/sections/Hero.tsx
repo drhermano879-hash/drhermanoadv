@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, MapPin } from 'lucide-react'
 
 export default function Hero() {
-  const whatsappNumber = '5571999999999'
+  const whatsappNumber = '557136218023'
   const messageText = 'Olá! Gostaria de iniciar uma consulta com um especialista.'
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`
 
@@ -129,7 +129,7 @@ export default function Hero() {
           <img
             src="/hero.webp"
             alt="Escritório Hermano Sousa Advogados"
-            className="w-full h-full object-cover object-center lg:object-left"
+            className="w-full h-full object-cover object-center lg:object-right"
             style={{ minHeight: '100vh' }}
           />
         </motion.div>
@@ -141,7 +141,7 @@ export default function Hero() {
 
         {/* Desktop Overlay: Very wide gradient fade-left starting early from the center */}
         <div 
-          className="hidden lg:block absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-[#FDFAF6] via-[#FDFAF6]/85 via-[#FDFAF6]/35 to-transparent pointer-events-none" 
+          className="hidden lg:block absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-[#FDFAF6] via-[#FDFAF6]/50 to-transparent pointer-events-none" 
         />
 
         {/* Bottom Fade Mask (to blend with the next section) */}

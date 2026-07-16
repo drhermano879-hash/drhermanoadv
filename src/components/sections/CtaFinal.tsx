@@ -154,20 +154,20 @@ export default function CtaFinal() {
                 {
                   icon: <Phone size={16} className="text-[#800000]" />,
                   label: 'TELEFONE',
-                  value: '(XX) XXXX-XXXX',
-                  href: 'tel:+5500000000000',
+                  value: '(71) 3621-8023',
+                  href: 'tel:+557136218023',
                 },
                 {
                   icon: <MessageSquare size={16} className="text-[#800000]" />,
                   label: 'WHATSAPP',
-                  value: '(XX) XXXXX-XXXX',
-                  href: 'https://wa.me/5500000000000',
+                  value: '(71) 3621-8023',
+                  href: 'https://wa.me/557136218023',
                 },
                 {
                   icon: <Mail size={16} className="text-[#800000]" />,
                   label: 'E-MAIL',
-                  value: 'contato@hermanosousa.adv.br',
-                  href: 'mailto:contato@hermanosousa.adv.br',
+                  value: 'advogadohermano@gmail.com',
+                  href: 'mailto:advogadohermano@gmail.com',
                 },
               ].map((item, idx) => (
                 <a
@@ -195,7 +195,7 @@ export default function CtaFinal() {
               </div>
               <div>
                 <p className="tracking-wider text-[10px] font-semibold text-neutral-400">HORÁRIO</p>
-                <p className="text-sm text-neutral-700 font-light mt-0.5">Segunda a Sexta · 8h às 18h</p>
+                <p className="text-sm text-neutral-700 font-light mt-0.5">Segunda a Sexta · 8h às 17h</p>
               </div>
             </div>
           </motion.div>

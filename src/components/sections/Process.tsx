@@ -18,8 +18,8 @@ const steps = [
   },
   { 
     n: '04', 
-    title: 'Patrocínio e Performance', 
-    text: 'Acompanhamento rigoroso em todas as instâncias judiciais ou administrativas. Atuamos com dedicação constante até a obtenção do melhor desfecho possível.' 
+    title: 'Patrocínio e Conclusão', 
+    text: 'Acompanhamento rigoroso em todas as instâncias judiciais ou administrativas. Garantimos informação total sobre o andamento do seu processo e transparência absoluta quanto às decisões tomadas, até a obtenção do melhor desfecho possível.' 
   },
 ]
 
@@ -69,10 +69,13 @@ export default function Process() {
           </p>
           <h2
             id="processo-titulo"
-            className="font-display text-4xl lg:text-5xl font-medium text-white leading-[1.15]"
+            className="font-display text-4xl lg:text-5xl font-medium text-white leading-[1.15] mb-4"
           >
             Do primeiro contato<br />à conclusão do caso.
           </h2>
+          <p className="text-neutral-300/70 text-sm sm:text-base font-light leading-relaxed max-w-2xl">
+            Lhe garantimos acompanhamento e informação total ao seu processo, com transparência quanto ao que foi decidido em cada etapa.
+          </p>
         </div>
 
         {/* ─── TIMELINE SECTION ─── */}
@@ -102,12 +105,11 @@ export default function Process() {
                 variants={itemVariants}
                 className="group relative bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] hover:border-[#800000]/40 rounded-xl p-8 flex flex-col justify-between min-h-[250px] hover:-translate-y-1 transition-all duration-300 shadow-lg cursor-default overflow-hidden"
               >
-                {/* Top Row: Number & Dot */}
+                {/* Top Row: Number */}
                 <div className="flex items-center justify-between z-10">
                   <span className="font-display text-4xl font-semibold text-white/20 group-hover:text-white/90 transition-colors duration-300 leading-none select-none">
                     {step.n}
                   </span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#800000]/40 group-hover:bg-[#800000] group-hover:scale-125 transition-all duration-300" />
                 </div>
 
                 {/* Bottom Row: Content */}

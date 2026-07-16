@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import LogoPlaceholder from '@/assets/LogoPlaceholder'
+import logoImg from '@/assets/logo/hsvermelho-semsombra.webp'
 
 const SocialInstagram = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -9,13 +9,7 @@ const SocialInstagram = () => (
   </svg>
 )
 
-const SocialLinkedin = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-    <rect x="2" y="9" width="4" height="12"/>
-    <circle cx="4" cy="4" r="2"/>
-  </svg>
-)
+
 
 const ShieldIcon = ({ className = "w-3 h-3" }: { className?: string }) => (
   <svg 
@@ -41,10 +35,8 @@ export default function Footer() {
     if (location.pathname === '/') {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
     } else {
+      sessionStorage.setItem('homeScrollTarget', href)
       navigate('/')
-      setTimeout(() => {
-        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
     }
   }
 
@@ -57,7 +49,24 @@ export default function Footer() {
 
           {/* Column 1: Brand & Description (4 Columns) */}
           <div className="lg:col-span-4 flex flex-col items-start gap-6">
-            <LogoPlaceholder variant="light" className="h-11 w-auto" />
+            {/* Logo + wordmark — mesma estrutura da navbar, cores invertidas para fundo escuro */}
+            <div className="flex items-center gap-3">
+              <img
+                src={logoImg}
+                alt="HS"
+                className="h-11 w-auto object-contain"
+                style={{ filter: 'brightness(0) invert(1)' }}
+              />
+              <div className="flex flex-col select-none">
+                <span className="font-display text-sm font-semibold tracking-wide leading-tight text-white">
+                  HERMANO SOUSA
+                </span>
+                <div className="h-px w-full my-0.5 bg-white/20" />
+                <span className="font-sans text-[8px] tracking-[0.2em] font-light leading-none text-white/50">
+                  ADVOGADOS ASSOCIADOS
+                </span>
+              </div>
+            </div>
             <p className="text-sm text-neutral-200/80 font-light leading-relaxed pr-6 text-justify">
               Advocacia de excelência fundada no rigor técnico e na defesa intransigente dos direitos sociais. Oferecemos patrocínio estratégico com foco em segurança jurídica e transparência operacional.
             </p>
@@ -102,7 +111,6 @@ export default function Footer() {
                 { label: 'Direito Previdenciário', slug: 'direito-previdenciario' },
                 { label: 'Direito Trabalhista', slug: 'direito-trabalhista' },
                 { label: 'Direito do Consumidor', slug: 'direito-do-consumidor' },
-                { label: 'Direito de Família', slug: 'direito-de-familia' },
                 { label: 'Direito Civil', slug: 'direito-civil' },
                 { label: 'Direito Empresarial', slug: 'direito-empresarial' }
               ].map((area) => (
@@ -129,17 +137,17 @@ export default function Footer() {
                 Camaçari - BA, 42800-610
               </p>
               <a
-                href="mailto:contato@hermanosousa.adv.br"
+                href="mailto:advogadohermano@gmail.com"
                 className="text-sm text-neutral-200/80 hover:text-white transition-colors duration-300 font-light"
               >
-                contato@hermanosousa.adv.br
+                advogadohermano@gmail.com
               </a>
             </div>
 
             <div className="border-t border-white/10 pt-5 flex flex-col gap-1.5">
-              <p className="text-xs text-white/50 font-medium">SOCIEDADE DE ADVOGADOS</p>
+              <p className="text-xs text-white/50 font-medium">SÓCIO FUNDADOR</p>
               <p className="text-sm text-white font-semibold tracking-wide">
-                OAB/BA 00.000
+                Dr. Hermano Sousa · OAB/BA 31.575
               </p>
             </div>
           </div>
@@ -182,22 +190,13 @@ export default function Footer() {
           {/* Social Icons */}
           <div className="flex items-center gap-4">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/drhermanosousaadv/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 rounded-lg border border-white/10 hover:border-white hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-all duration-300 cursor-pointer"
               aria-label="Instagram institucional"
             >
               <SocialInstagram />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-lg border border-white/10 hover:border-white hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-all duration-300 cursor-pointer"
-              aria-label="LinkedIn institucional"
-            >
-              <SocialLinkedin />
             </a>
           </div>
         </div>

@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion'
 
+import diegoPinheiroImg from '@/assets/diegopinheiro.webp'
+import ednaNascimentoImg from '@/assets/ednanascimento.webp'
+import joaoMonteiroImg from '@/assets/joaomonteiro.webp'
+import victorHugoImg from '@/assets/victorhugo.webp'
+
 // Custom OAB-compliant/standard LinkedIn SVG icon since it is not exported by this lucide version
 const LinkedinIcon = ({ className = "w-3.5 h-3.5" }: { className?: string }) => (
   <svg 
@@ -19,18 +24,28 @@ const LinkedinIcon = ({ className = "w-3.5 h-3.5" }: { className?: string }) => 
 
 const associates = [
   {
-    name: 'Dra. Mariana Costa',
-    role: 'Coordenadora de Auditoria de Direitos',
-    webp: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=500&q=80&fm=webp',
-    jpg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=500&q=80&fm=jpg',
-    linkedin: 'https://linkedin.com',
+    name: 'Victor Hugo Barbosa Batista',
+    role: 'Consultor Jurídico — Trabalhista e Prev',
+    webp: victorHugoImg,
+    jpg: victorHugoImg,
   },
   {
-    name: 'Dr. Felipe Rocha',
-    role: 'Especialista em Planejamento Previdenciário',
-    webp: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&h=500&q=80&fm=webp',
-    jpg: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&h=500&q=80&fm=jpg',
-    linkedin: 'https://linkedin.com',
+    name: 'Diego Pinheiro Queiroz',
+    role: 'Consultor Jurídico — Prev e Consumidor',
+    webp: diegoPinheiroImg,
+    jpg: diegoPinheiroImg,
+  },
+  {
+    name: 'João Monteiro Tavares',
+    role: 'Estagiário de Direito',
+    webp: joaoMonteiroImg,
+    jpg: joaoMonteiroImg,
+  },
+  {
+    name: 'Edna Nascimento',
+    role: 'Secretária e Recepcionista',
+    webp: ednaNascimentoImg,
+    jpg: ednaNascimentoImg,
   },
 ]
 
@@ -88,52 +103,27 @@ export default function Team() {
         </motion.div>
 
         {/* ─── GRID CONTENT ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* ─── LEFT COLUMN (Founding Partner - 5 Columns) ─── */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-10% 0px' }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex flex-col gap-6"
-          >
-            {/* Founder Photo */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-black/[0.03] shadow-sm shadow-black/[0.01]">
-              <img
-                src="/drhermano.webp"
-                alt="Dr. Hermano Sousa Sócio Fundador"
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.03]"
-              />
-            </div>
-            
-            {/* Founder details */}
-            <div className="flex flex-col gap-3 pl-1 select-text">
-              <div>
-                <p className="tracking-wider text-[10px] font-semibold text-[#800000] uppercase">Sócio Fundador & Diretor Jurídico</p>
-                <h3 className="font-display text-2xl font-medium text-[#1A1A1A] mt-1">Dr. Hermano Sousa</h3>
-              </div>
-              <p className="text-sm text-neutral-500 font-light leading-relaxed text-justify">
-                Especialista em Direito Previdenciário com mais de duas décadas de atuação em teses de alta complexidade junto aos Tribunais Superiores. Responsável pela coordenação estratégica do escritório.
-              </p>
-            </div>
-          </motion.div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-10% 0px' }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-6 pb-20 lg:pb-28"
+        >
+          {associates.map((item, idx) => {
+            const offsets = [
+              'lg:translate-y-0',
+              'lg:translate-y-12',
+              'lg:-translate-y-4',
+              'lg:translate-y-8',
+            ]
+            const offsetClass = offsets[idx] || ''
 
-          {/* ─── RIGHT COLUMN (Associates Subgrid - 7 Columns) ─── */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-10% 0px' }}
-            className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6"
-          >
-            {associates.map((item, idx) => (
+            return (
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="group relative bg-white p-5 rounded-2xl border border-neutral-200/40 shadow-sm hover:border-[#800000]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col gap-5 cursor-default overflow-hidden"
+                className={`group relative bg-white p-5 rounded-2xl border border-neutral-200/40 shadow-sm hover:border-[#800000]/30 hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col gap-5 cursor-default overflow-hidden ${offsetClass}`}
               >
                 {/* Associate Photo */}
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-neutral-100">
@@ -160,22 +150,22 @@ export default function Team() {
                     </p>
                   </div>
 
-                  {/* LinkedIn Link */}
-                  <a
-                    href={item.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2.5 border border-neutral-200/60 rounded-xl bg-neutral-50/50 hover:bg-neutral-50 text-neutral-400 hover:text-[#800000] transition-all duration-300 shrink-0 cursor-pointer flex items-center justify-center"
-                    aria-label={`LinkedIn profissional de ${item.name}`}
-                  >
-                    <LinkedinIcon />
-                  </a>
+                  {item.linkedin && (
+                    <a
+                      href={item.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 border border-neutral-200/60 rounded-xl bg-neutral-50/50 hover:bg-neutral-50 text-neutral-400 hover:text-[#800000] transition-all duration-300 shrink-0 cursor-pointer flex items-center justify-center"
+                      aria-label={`LinkedIn profissional de ${item.name}`}
+                    >
+                      <LinkedinIcon />
+                    </a>
+                  )}
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
-
-        </div>
+            )
+          })}
+        </motion.div>
       </div>
     </section>
   )

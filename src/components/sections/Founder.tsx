@@ -28,21 +28,30 @@ export default function Founder() {
               id="fundador-titulo"
               className="font-display text-4xl lg:text-5xl font-medium text-[#1A1A1A] leading-[1.15]"
             >
-              A Mente Estratégica<br />por Trás da Banca
+              e a mente por trás<br />do escritório
             </h2>
 
             {/* Subtitle */}
             <h3 className="font-display text-lg lg:text-xl text-[#800000] font-normal leading-relaxed">
-              Dr. Hermano Sousa — Especialização, ética e dedicação intransigente à justiça social.
+              Dr. Hermano Francisco de Sousa — OAB/BA 31.575
             </h3>
 
             {/* Copy paragraphs for SEO & Google indexing */}
             <div className="text-neutral-500 text-sm sm:text-base leading-relaxed font-light text-justify flex flex-col gap-4">
               <p>
-                Com uma sólida trajetória na advocacia baiana, o Dr. Hermano Sousa construiu sua carreira fundamentado no rigor científico e na busca incessante pelas soluções jurídicas mais vantajosas para seus clientes. Sua atuação em Camaçari e Região Metropolitana é marcada pela liderança em litígios complexos de Direito Previdenciário (INSS) e Direito Trabalhista.
+                O escritório foi fundado pelo Dr. Hermano Francisco de Sousa, advogado com mais de 30 anos de atuação, bacharel em Direito pela UNIFAMEC e mestre em Administração pela UCSAL.
               </p>
               <p>
-                Acreditando que o atendimento próximo e individualizado é a chave para o sucesso de uma causa, o fundador desenha pessoalmente as teses de revisão de benefícios, planejamentos de aposentadoria e defesas contratuais, garantindo que cada cidadão receba o amparo legal necessário com máxima segurança e transparência.
+                Com trajetória marcada pelo compromisso social, possui forte atuação no Direito Previdenciário, especialmente em demandas envolvendo BPC/LOAS, benefícios por incapacidade, aposentadorias, pensões e revisões previdenciárias. Também dedica sua prática profissional à defesa dos trabalhadores no Direito do Trabalho.
+              </p>
+              <p>
+                Além da advocacia, Dr. Hermano contribuiu para o município de Camaçari como professor da rede pública, participando da formação educacional de alunos e fortalecendo sua ligação com a comunidade local.
+              </p>
+              <p>
+                Em 2025, recebeu da Câmara Municipal de Camaçari a Medalha Desembargador Montenegro, reconhecimento por sua contribuição ao município como advogado, educador e cidadão camaçariense.
+              </p>
+              <p>
+                A história do Dr. Hermano Francisco de Sousa reflete uma vida dedicada ao serviço da comunidade, à defesa dos direitos dos segurados, dos trabalhadores e das pessoas em situação de maior vulnerabilidade, sempre com atuação pautada pela ética, pela responsabilidade e pelo compromisso social.
               </p>
             </div>
           </motion.div>

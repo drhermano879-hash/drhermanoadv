@@ -1,15 +1,12 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Shield } from 'lucide-react'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 
 export default function PoliticaCookies() {
   return (
     <>
       <title>Política de Cookies | Hermano Sousa</title>
       <meta name="description" content="Informações transparentes sobre como utilizamos cookies para otimizar e personalizar sua experiência de navegação em nosso site." />
-      <Header />
       
       <main id="main-content" className="bg-[#FDFAF6] min-h-screen pt-32 pb-24 select-text">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
@@ -100,8 +97,6 @@ export default function PoliticaCookies() {
 
         </div>
       </main>
-
-      <Footer />
     </>
   )
 }
