@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { ArrowLeft, MessageCircle, Shield, Check } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowLeft, MessageCircle, Shield, Check, ChevronRight, ChevronDown } from 'lucide-react'
 import { areasData } from '@/data/areasData'
+import { useSEO } from '@/hooks/useSEO'
 
 export default function AreaDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -11,45 +12,90 @@ export default function AreaDetail() {
   const cleanSlug = slug ? slug.replace(/[^a-zA-Z0-9-]/g, '') : ''
   const area = cleanSlug ? areasData[cleanSlug] : null
 
-  // Ensure scroll is reset to top and SEO meta-tags are dynamically updated
-  useEffect(() => {
-    window.scrollTo(0, 0)
+  // Accordion state for page-specific FAQs
+  const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(null)
 
-    if (area) {
-      let seoTitle = `${area.title} | Hermano Sousa`
-      let seoDesc = area.subtitle
+  const toggleFaq = (idx: number) => {
+    setOpenFaqIdx(openFaqIdx === idx ? null : idx)
+  }
 
-      if (cleanSlug === 'direito-previdenciario') {
-        seoTitle = 'Advogado Previdenciário em Camaçari - BA | Hermano Sousa'
-        seoDesc = 'Precisa de ajuda com aposentadoria ou benefício do INSS em Camaçari - BA? Fale com o Dr. Hermano Sousa. Planejamento previdenciário estratégico e revisão de benefícios.'
-      } else if (cleanSlug === 'direito-trabalhista') {
-        seoTitle = 'Advogado Trabalhista em Camaçari - BA | Hermano Sousa'
-        seoDesc = 'Defesa especializada dos direitos do trabalhador em Camaçari e Região Metropolitana. Reclamações trabalhistas, rescisões, horas extras e FGTS. Agende sua consulta.'
-      } else if (cleanSlug === 'direito-do-consumidor') {
-        seoTitle = 'Direito do Consumidor e Fraudes | Camaçari - BA'
-        seoDesc = 'Proteção integral contra abusos de bancos, juros abusivos, negativações indevidas e fraudes financeiras em Camaçari - BA. Fale com um especialista.'
-      } else if (cleanSlug === 'direito-de-familia') {
-        seoTitle = 'Inventários e Divórcios em Camaçari - BA | Hermano Sousa'
-        seoDesc = 'Assessoria jurídica em divórcios, partilha de bens, pensão alimentícia e inventários em Camaçari - BA. Atendimento humanizado e especializado.'
-      } else if (cleanSlug === 'direito-civil') {
-        seoTitle = 'Advogado Civil em Camaçari - BA | Hermano Sousa'
-        seoDesc = 'Advocacia cível e imobiliária em Camaçari - BA. Contratos de alta complexidade, posse, usucapião e cobranças. Proteja seu patrimônio.'
-      } else if (cleanSlug === 'direito-empresarial') {
-        seoTitle = 'Advogado Empresarial em Camaçari - BA | Hermano Sousa'
-        seoDesc = 'Assessoria jurídica societária, holding familiar e planejamento patrimonial para empresas em Camaçari - BA. Blindagem patrimonial de excelência.'
-      }
-
-      document.title = seoTitle
-
-      let metaDesc = document.querySelector('meta[name="description"]')
-      if (!metaDesc) {
-        metaDesc = document.createElement('meta')
-        metaDesc.setAttribute('name', 'description')
-        document.head.appendChild(metaDesc)
-      }
-      metaDesc.setAttribute('content', seoDesc)
-    }
-  }, [cleanSlug, area])
+  // ─── SEO Integration via Hook ───
+  useSEO({
+    title: area ? area.seoTitle : 'Área Não Encontrada | Hermano Sousa Advogados',
+    description: area ? area.seoDescription : 'Página não encontrada no site do escritório Hermano Sousa Advogados.',
+    canonicalUrl: `https://hermanosousa.adv.br/areas/${cleanSlug}`,
+    openGraph: area
+      ? {
+          title: area.seoTitle,
+          description: area.seoDescription,
+          url: `https://hermanosousa.adv.br/areas/${cleanSlug}`,
+        }
+      : undefined,
+    schemas: area
+      ? [
+          // 1. Breadcrumb List Schema
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Início',
+                'item': 'https://hermanosousa.adv.br/',
+              },
+              {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Áreas de Atuação',
+                'item': 'https://hermanosousa.adv.br/#areas',
+              },
+              {
+                '@type': 'ListItem',
+                'position': 3,
+                'name': area.title,
+                'item': `https://hermanosousa.adv.br/areas/${cleanSlug}`,
+              },
+            ],
+          },
+          // 2. Service & Legal Service Schema
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            'serviceType': area.title,
+            'provider': {
+              '@type': 'LegalService',
+              'name': 'Hermano Sousa Advogados Associados',
+              'image': 'https://hermanosousa.adv.br/og-image.jpg',
+              'telephone': '+557136218023',
+              'url': 'https://hermanosousa.adv.br/',
+              'address': {
+                '@type': 'PostalAddress',
+                'streetAddress': 'Rua Adelina de Souza, Centro',
+                'addressLocality': 'Camaçari',
+                'addressRegion': 'BA',
+                'postalCode': '42800-000',
+                'addressCountry': 'BR',
+              },
+            },
+            'description': area.seoDescription,
+          },
+          // 3. FAQPage Schema
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            'mainEntity': area.faqs.map(faq => ({
+              '@type': 'Question',
+              'name': faq.question,
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': faq.answer,
+              },
+            })),
+          },
+        ]
+      : [],
+  })
 
   // ─── 404 state ───────────────────────────────────────────────────────────────
   if (!area) {
@@ -80,7 +126,6 @@ export default function AreaDetail() {
     )
   }
 
-  // ─── Main content ─────────────────────────────────────────────────────────────
   const whatsappNumber = '557136218023'
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(area.whatsappMessage)}`
 
@@ -88,7 +133,15 @@ export default function AreaDetail() {
     <main id="main-content" className="bg-[#FDFAF6] min-h-screen pt-32 pb-24 select-text">
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
 
-        {/* ─── Back button ───────────────────────────────────────────────────── */}
+        {/* ─── Breadcrumbs & Back Button ──────────────────────────────────────── */}
+        <nav aria-label="Navegação em trilha (Breadcrumbs)" className="mb-8 flex flex-wrap items-center gap-2 text-xs text-neutral-400 select-none">
+          <Link to="/" className="hover:text-[#800000] transition-colors duration-300">Início</Link>
+          <ChevronRight size={11} className="shrink-0" />
+          <a href="/#areas" className="hover:text-[#800000] transition-colors duration-300">Áreas de Atuação</a>
+          <ChevronRight size={11} className="shrink-0" />
+          <span className="text-neutral-600 font-medium truncate max-w-[200px] sm:max-w-none">{area.title}</span>
+        </nav>
+
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
@@ -97,6 +150,10 @@ export default function AreaDetail() {
         >
           <Link
             to="/"
+            onClick={() => {
+              // Reter a posição de rolagem se voltar direto pelas áreas
+              // O scroll position já foi gravado ao sair da home
+            }}
             className="inline-flex items-center gap-2 text-neutral-500 hover:text-[#800000] text-xs font-semibold tracking-wider uppercase transition-colors duration-300 group"
           >
             <ArrowLeft size={14} className="transition-transform duration-300 group-hover:-translate-x-1" />
@@ -106,7 +163,7 @@ export default function AreaDetail() {
 
         {/* ─── SECTION 01: HERO ──────────────────────────────────────────────── */}
         <div className="border-b border-neutral-200/50 pb-16 mb-20">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -123,7 +180,7 @@ export default function AreaDetail() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-medium text-[#1A1A1A] leading-[1.1] mb-8"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1A1A1A] leading-[1.15] mb-8"
             >
               {area.title}
             </motion.h1>
@@ -155,7 +212,7 @@ export default function AreaDetail() {
           </div>
         </div>
 
-        {/* ─── SECTION 02: CONTENT GRID ──────────────────────────────────────── */}
+        {/* ─── SECTION 02: CONTENT GRID (TECHNICAL & HOW WE HELP) ─────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24">
 
           {/* Left Column: Technical Explanation */}
@@ -164,12 +221,12 @@ export default function AreaDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 flex flex-col gap-6"
+            className="lg:col-span-7 flex flex-col gap-6"
           >
-            <h3 className="font-display text-2xl font-medium text-[#1A1A1A]">
+            <h2 className="font-display text-2xl lg:text-3xl font-medium text-[#1A1A1A]">
               Visão Técnica e Atuação
-            </h3>
-            <div className="text-neutral-500 text-sm sm:text-base leading-relaxed font-light text-justify flex flex-col gap-4">
+            </h2>
+            <div className="text-neutral-600 text-sm sm:text-base leading-relaxed font-light text-justify flex flex-col gap-5">
               <p>{area.explanation}</p>
               <p>
                 Buscamos resguardar seus direitos por meio de um patrocínio cuidadoso, aliando fundamentação acadêmica robusta a ferramentas tecnológicas modernas de auditoria jurídica. Nosso compromisso é com a clareza e com a obtenção de soluções definitivas.
@@ -183,7 +240,7 @@ export default function AreaDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 flex flex-col gap-6"
+            className="lg:col-span-5 flex flex-col gap-6"
           >
             <h3 className="font-display text-2xl font-medium text-[#1A1A1A] lg:pl-2">
               Como podemos ajudar
@@ -201,7 +258,7 @@ export default function AreaDetail() {
                   <div className="w-8 h-8 rounded-full bg-[#800000]/5 flex items-center justify-center shrink-0">
                     <Check size={14} className="text-[#800000]" />
                   </div>
-                  <span className="text-sm font-sans font-medium text-neutral-700">
+                  <span className="text-sm font-sans font-medium text-neutral-700 leading-snug">
                     {item}
                   </span>
                 </motion.div>
@@ -211,7 +268,88 @@ export default function AreaDetail() {
 
         </div>
 
-        {/* ─── SECTION 03: CTA BANNER ────────────────────────────────────────── */}
+        {/* ─── SECTION 03: EXPANDED DETAILED SECTIONS (SEO LOCAL & EEAT) ───────── */}
+        <div className="border-t border-neutral-200/60 pt-20 mb-24">
+          <div className="max-w-4xl flex flex-col gap-16">
+            {area.sections.map((section, idx) => (
+              <motion.article
+                key={idx}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-5%' }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col gap-6"
+              >
+                {section.title && (
+                  <h2 className="font-display text-2xl sm:text-3xl font-medium text-[#1A1A1A] leading-tight tracking-tight">
+                    {section.title}
+                  </h2>
+                )}
+                <div className="text-neutral-600 text-sm sm:text-base leading-relaxed font-light text-justify flex flex-col gap-5">
+                  {section.content.map((pText, pIdx) => (
+                    <p key={pIdx}>{pText}</p>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+
+        {/* ─── SECTION 04: PAGE-SPECIFIC FAQ ACCORDION ───────────────────────── */}
+        <div className="border-t border-neutral-200/60 pt-20 mb-24 max-w-4xl">
+          <div className="mb-12">
+            <p className="text-[11px] tracking-[0.3em] uppercase text-[#800000] font-semibold mb-4">
+              Respostas Técnicas
+            </p>
+            <h2 className="font-display text-3xl font-medium text-[#1A1A1A] leading-tight">
+              Perguntas Frequentes sobre a Especialidade
+            </h2>
+          </div>
+
+          <div className="flex flex-col border-t border-neutral-200">
+            {area.faqs.map((faq, idx) => {
+              const isOpen = openFaqIdx === idx
+              return (
+                <div key={idx} className="border-b border-neutral-200">
+                  <button
+                    onClick={() => toggleFaq(idx)}
+                    className="w-full py-6 flex items-center justify-between text-left gap-6 group hover:text-[#800000] transition-colors duration-300 cursor-pointer"
+                    aria-expanded={isOpen}
+                  >
+                    <span className={`font-display text-base md:text-lg font-medium transition-colors duration-300 ${isOpen ? 'text-[#800000]' : 'text-[#1A1A1A]'}`}>
+                      {faq.question}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={`shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-colors duration-300 ${isOpen ? 'border-[#800000]/30 bg-[#800000]/5 text-[#800000]' : 'border-neutral-200 text-neutral-400 group-hover:border-neutral-300 group-hover:text-neutral-600'}`}
+                    >
+                      <ChevronDown size={16} />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pb-6 text-neutral-500 text-sm sm:text-base leading-relaxed font-light text-justify pr-6">
+                          <p>{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* ─── SECTION 05: CTA BANNER ────────────────────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

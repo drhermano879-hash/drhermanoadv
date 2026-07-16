@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
-import LogoPlaceholder from '@/assets/LogoPlaceholder'
 import logoImg from '@/assets/logo/hsvermelho-semsombra.webp'
 
 const navLinks = [

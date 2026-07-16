@@ -1,26 +1,5 @@
 import { motion } from 'framer-motion'
 
-const images = [
-  {
-    webp: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80&fm=webp',
-    jpg: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80&fm=jpg',
-    alt: 'Sala de reuniões moderna e privativa',
-    span: 'md:col-span-2 h-[350px] md:h-[450px]',
-  },
-  {
-    webp: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=600&q=80&fm=webp',
-    jpg: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=600&q=80&fm=jpg',
-    alt: 'Recepção e área de acolhimento',
-    span: 'md:col-span-1 h-[350px] md:h-[450px]',
-  },
-  {
-    webp: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80&fm=webp',
-    jpg: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80&fm=jpg',
-    alt: 'Estação de trabalho corporativa e integrada',
-    span: 'md:col-span-3 h-[250px] md:h-[350px]',
-  },
-]
-
 export default function Gallery() {
   const containerVariants = {
     hidden: { opacity: 0 },

@@ -22,7 +22,15 @@ const LinkedinIcon = ({ className = "w-3.5 h-3.5" }: { className?: string }) => 
   </svg>
 )
 
-const associates = [
+interface Associate {
+  name: string
+  role: string
+  webp: string
+  jpg: string
+  linkedin?: string
+}
+
+const associates: Associate[] = [
   {
     name: 'Victor Hugo Barbosa Batista',
     role: 'Consultor Jurídico — Trabalhista e Prev',

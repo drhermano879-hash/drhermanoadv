@@ -42,7 +42,6 @@ export default function LuxuryCurtain() {
             transition={{
               duration: 0.38,
               ease: [0.45, 0, 0.15, 1],
-              exit: { duration: 0.34, ease: [0.16, 1, 0.3, 1] },
             }}
             style={{
               position: 'fixed',
@@ -63,7 +62,6 @@ export default function LuxuryCurtain() {
             transition={{
               duration: 0.38,
               ease: [0.45, 0, 0.15, 1],
-              exit: { duration: 0.34, ease: [0.16, 1, 0.3, 1] },
             }}
             style={{
               position: 'fixed',
@@ -88,7 +86,6 @@ export default function LuxuryCurtain() {
               delay: 0.20,
               duration: 0.24,
               ease: [0.16, 1, 0.3, 1],
-              exit: { delay: 0, duration: 0.14, ease: [0.7, 0, 0.84, 0] },
             }}
             style={{
               position: 'fixed',
