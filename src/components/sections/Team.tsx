@@ -33,13 +33,13 @@ interface Associate {
 const associates: Associate[] = [
   {
     name: 'Victor Hugo Barbosa Batista',
-    role: 'Consultor Jurídico — Trabalhista e Prev',
+    role: 'Consultor Jurídico — Trabalhista e Previdenciário',
     webp: victorHugoImg,
     jpg: victorHugoImg,
   },
   {
     name: 'Diego Pinheiro Queiroz',
-    role: 'Consultor Jurídico — Prev e Consumidor',
+    role: 'Consultor Jurídico — Previdenciário e Consumidor',
     webp: diegoPinheiroImg,
     jpg: diegoPinheiroImg,
   },

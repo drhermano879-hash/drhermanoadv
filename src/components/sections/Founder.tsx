@@ -64,13 +64,13 @@ export default function Founder() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 order-1 lg:order-2"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-black/[0.03] shadow-lg shadow-black/[0.02] group">
+            <div className="relative w-full rounded-2xl border border-black/[0.03] shadow-lg shadow-black/[0.02] group overflow-hidden">
               <img
                 src="/drhermano.webp"
                 alt="Dr. Hermano Sousa — Sócio Fundador"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out hover:scale-[1.03]"
+                className="w-full h-auto object-contain transition-transform duration-700 ease-out hover:scale-[1.03]"
               />
               {/* Subtle elegant border overlay */}
               <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none" />
