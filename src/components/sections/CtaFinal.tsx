@@ -5,12 +5,10 @@ import Toast from '@/components/ui/Toast'
 import { playSuccessChime } from '@/utils/sound'
 import {
   generateCsrfToken,
-  getCsrfToken,
   recordFormMount,
   isTooFast,
   getBrowserFingerprint,
   containsSuspiciousPayload,
-  getFormElapsedMs,
 } from '@/utils/security'
 
 interface FormData { name: string; email: string; phone: string; area: string; message: string }
