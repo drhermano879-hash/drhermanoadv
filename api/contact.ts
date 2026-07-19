@@ -9,6 +9,8 @@ const CSRF_SECRET = 'hs2026csrf!'      // server-side CSRF seed
 const ALLOWED_ORIGINS = [
   'https://hermanosousa.adv.br',
   'https://www.hermanosousa.adv.br',
+  'https://hermanosousaadv.com.br',
+  'https://www.hermanosousaadv.com.br',
   'http://localhost:5173',
   'http://localhost:4173',
 ]
@@ -194,7 +196,7 @@ export default async function handler(
     const cleanMessage = sanitize(message)
 
     const { data, error } = await resend.emails.send({
-      from: 'Contato Site <onboarding@resend.dev>',
+      from: 'Contato Site <contato@hermanosousaadv.com.br>',
       to: ['drhermano879@gmail.com'],
       subject: `Novo contato do site — ${cleanArea}`,
       replyTo: email, // original (already validated) email

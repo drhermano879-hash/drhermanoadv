@@ -55,7 +55,7 @@ function localApiPlugin() {
           const resend = new Resend(apiKey)
 
           const result = await resend.emails.send({
-            from: 'Contato Site <onboarding@resend.dev>',
+            from: 'Contato Site <contato@hermanosousaadv.com.br>',
             to: ['drhermano879@gmail.com'],
             subject: `Novo contato do site — ${area || 'Sem área definida'}`,
             replyTo: email,
