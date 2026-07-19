@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import logoImg from '@/assets/logo/hsvermelho-semsombra.webp'
+import logoImg from '@/assets/logo/logo-sembg.png'
 
 const SocialInstagram = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">

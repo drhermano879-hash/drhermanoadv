@@ -134,7 +134,7 @@ export default function Header() {
       <div className={`transition-all duration-500 ${
         menuOpen
           ? 'bg-transparent border-transparent shadow-none'
-          : 'bg-white/85 backdrop-blur-lg border-b border-neutral-200/60 shadow-md shadow-black/[0.04]'
+          : 'bg-[#3A0000]/60 backdrop-blur-xl border-b border-white/[0.06] shadow-md shadow-black/20'
       }`}>
         <div className="relative z-50 max-w-7xl mx-auto px-8 lg:px-12">
           <div className="flex items-center justify-between h-20">
@@ -146,13 +146,13 @@ export default function Header() {
               aria-label="Hermano Sousa Advogados — Início"
               className="flex items-center gap-3 flex-shrink-0"
             >
-              <img src={logoImg} alt="HS" className="h-10 md:h-12 w-auto object-contain" />
+              <img src={logoImg} alt="HS" className="h-10 md:h-12 w-auto object-contain" style={{ filter: 'grayscale(1) brightness(1.9) contrast(0.9) saturate(0.3)' }} />
               <div className="flex flex-col select-none">
-                <span className={`font-display text-sm md:text-base font-semibold tracking-wide leading-tight transition-colors duration-500 ${menuOpen ? 'text-white' : 'text-[#800000]'}`}>
+                <span className={`font-display text-sm md:text-base font-semibold tracking-wide leading-tight transition-colors duration-500 ${menuOpen ? 'text-white' : 'text-white'}`}>
                   HERMANO SOUSA
                 </span>
-                <div className={`h-[1px] w-full my-0.5 transition-colors duration-500 ${menuOpen ? 'bg-white/20' : 'bg-[#660000]/20'}`} />
-                <span className={`font-sans text-[7px] md:text-[8px] tracking-[0.2em] font-light leading-none transition-colors duration-500 ${menuOpen ? 'text-neutral-400' : 'text-[#660000]'}`}>
+                <div className={`h-[1px] w-full my-0.5 transition-colors duration-500 ${menuOpen ? 'bg-white/20' : 'bg-white/10'}`} />
+                <span className={`font-sans text-[7px] md:text-[8px] tracking-[0.2em] font-light leading-none transition-colors duration-500 ${menuOpen ? 'text-neutral-400' : 'text-white/50'}`}>
                   ADVOGADOS ASSOCIADOS
                 </span>
               </div>
@@ -170,7 +170,7 @@ export default function Header() {
                   href={link.href}
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href) }}
                   onMouseEnter={() => setHoveredIdx(idx)}
-                  className={`relative py-2 text-[#2D2D2D] hover:text-[#800000] text-xs tracking-wider font-semibold transition-all duration-300 ${
+                  className={`relative py-2 text-white/80 hover:text-white text-xs tracking-wider font-semibold transition-all duration-300 ${
                     hoveredIdx !== null && hoveredIdx !== idx ? 'opacity-30' : 'opacity-100'
                   }`}
                 >
@@ -178,7 +178,7 @@ export default function Header() {
                   {hoveredIdx === idx && (
                     <motion.span
                       layoutId="navHoverLine"
-                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800000] rounded-full"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-white rounded-full"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -192,7 +192,7 @@ export default function Header() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#800000] hover:bg-[#4D0000] text-white text-xs tracking-wider font-medium px-5 py-2.5 rounded-xl shadow-sm hover:shadow hover:scale-[1.02] active:scale-100 transition-all duration-300 cursor-pointer"
+                className="inline-flex items-center justify-center bg-white hover:bg-[#F0EDE8] text-[#4D0000] text-xs tracking-wider font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:shadow hover:scale-[1.02] active:scale-100 transition-all duration-300 cursor-pointer"
                 id="header-cta"
               >
                 Fale com o especialista
@@ -205,9 +205,9 @@ export default function Header() {
               className="lg:hidden flex flex-col gap-[5px] p-2 relative z-50"
               aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
             >
-              <span className={`block w-6 h-px transition-all duration-500 ${menuOpen ? 'bg-[#F9F6F1] rotate-45 translate-y-[6px]' : 'bg-[#2D2D2D]'}`} />
-              <span className={`block w-6 h-px transition-all duration-500 ${menuOpen ? 'bg-[#F9F6F1] opacity-0' : 'bg-[#2D2D2D]'}`} />
-              <span className={`block w-6 h-px transition-all duration-500 ${menuOpen ? 'bg-[#F9F6F1] -rotate-45 -translate-y-[6px]' : 'bg-[#2D2D2D]'}`} />
+              <span className={`block w-6 h-px transition-all duration-500 ${menuOpen ? 'bg-[#F9F6F1] rotate-45 translate-y-[6px]' : 'bg-white/80'}`} />
+              <span className={`block w-6 h-px transition-all duration-500 ${menuOpen ? 'bg-[#F9F6F1] opacity-0' : 'bg-white/80'}`} />
+              <span className={`block w-6 h-px transition-all duration-500 ${menuOpen ? 'bg-[#F9F6F1] -rotate-45 -translate-y-[6px]' : 'bg-white/80'}`} />
             </button>
           </div>
         </div>

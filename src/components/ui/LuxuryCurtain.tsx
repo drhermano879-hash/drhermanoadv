@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import logoImg from '@/assets/logo/hsvermelho-semsombra.webp'
+import logoImg from '@/assets/logo/logo-sembg.png'
 
 /**
  * LUXURY CURTAIN OVERLAY
