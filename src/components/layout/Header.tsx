@@ -134,7 +134,7 @@ export default function Header() {
       <div className={`transition-all duration-500 ${
         menuOpen
           ? 'bg-transparent border-transparent shadow-none'
-          : 'bg-white/85 backdrop-blur-lg border-b border-neutral-200/60 rounded-t-xl md:rounded-t-2xl shadow-md shadow-black/[0.04]'
+          : 'bg-white/85 backdrop-blur-lg border-b border-neutral-200/60 shadow-md shadow-black/[0.04]'
       }`}>
         <div className="relative z-50 max-w-7xl mx-auto px-8 lg:px-12">
           <div className="flex items-center justify-between h-20">

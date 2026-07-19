@@ -1,6 +1,17 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle, AlertCircle, Lock, ChevronDown, Phone, MessageSquare, Mail, Clock } from 'lucide-react'
+import Toast from '@/components/ui/Toast'
+import { playSuccessChime } from '@/utils/sound'
+import {
+  generateCsrfToken,
+  getCsrfToken,
+  recordFormMount,
+  isTooFast,
+  getBrowserFingerprint,
+  containsSuspiciousPayload,
+  getFormElapsedMs,
+} from '@/utils/security'
 
 interface FormData { name: string; email: string; phone: string; area: string; message: string }
 interface FormErrors { name?: string; email?: string; phone?: string; message?: string }
@@ -69,7 +80,25 @@ export default function CtaFinal() {
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [honeypot, setHoneypot] = useState('')
+  const [toastVisible, setToastVisible] = useState(false)
+
+  const closeToast = useCallback(() => setToastVisible(false), [])
+
+  // ─── Honeypot fields (bots fill hidden fields; humans don't) ────
+  const [honey1, setHoney1] = useState('') // text field
+  const [honey2url, setHoney2url] = useState('') // "website" field
+  const [honey3Agree, setHoney3Agree] = useState(false) // checkbox that must stay unchecked
+
+  // ─── Security tokens & timers ───────────────────────────────────
+  const [csrfToken] = useState(generateCsrfToken)
+  const formMountTs = useRef<string>('')
+  const lastSubmitRef = useRef(0)
+  const COOLDOWN_MS = 8_000 // minimum 8 seconds between submissions
+
+  useEffect(() => {
+    recordFormMount()
+    formMountTs.current = Date.now().toString(36)
+  }, [])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -80,8 +109,10 @@ export default function CtaFinal() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Silent bot block via Honeypot check
-    if (honeypot.trim()) {
+    // ── Layer 1: Bot detection via honeypots ────────────────────────
+    const botDetected = honey1.trim().length > 0 || honey2url.trim().length > 0 || honey3Agree === true
+    if (botDetected) {
+      // Silently pretend success to not tip off the bot
       setIsSubmitting(true)
       await new Promise(r => setTimeout(r, 1000))
       setSubmitted(true)
@@ -89,22 +120,85 @@ export default function CtaFinal() {
       return
     }
 
-    // Sanitize and clean inputs before validation
+    // ── Layer 2: Cooldown throttle ─────────────────────────────────
+    const now = Date.now()
+    if (now - lastSubmitRef.current < COOLDOWN_MS) {
+      setErrors({ message: 'Aguarde alguns segundos antes de enviar novamente.' })
+      return
+    }
+
+    // ── Layer 3: Form timing trap ──────────────────────────────────
+    if (isTooFast(3)) {
+      console.warn('[Security] Form submitted too fast — blocked')
+      setErrors({ message: 'Erro de segurança. Recarregue a página e tente novamente.' })
+      return
+    }
+
+    // ── Layer 4: Max field length enforcement ──────────────────────
+    if (form.name.length > 120 || form.email.length > 254 || form.phone.length > 20 || form.message.length > 5000) {
+      setErrors({ message: 'Um ou mais campos excedem o tamanho máximo permitido.' })
+      return
+    }
+
+    // ── Layer 5: Sanitize inputs ────────────────────────────────────
     const sanitizedForm: FormData = {
       name: sanitizeInput(form.name),
       email: sanitizeInput(form.email),
-      phone: form.phone.replace(/\D/g, ''), // Keep numeric digits only
+      phone: form.phone.replace(/\D/g, ''),
       area: sanitizeInput(form.area),
-      message: sanitizeInput(form.message)
+      message: sanitizeInput(form.message),
     }
 
-    const errs = validate(sanitizedForm)
-    if (Object.keys(errs).length) { setErrors(errs); return }
+    // ── Layer 6: Suspicious payload pre-check ──────────────────────
+    if (
+      containsSuspiciousPayload(sanitizedForm.name) ||
+      containsSuspiciousPayload(sanitizedForm.email) ||
+      containsSuspiciousPayload(sanitizedForm.phone) ||
+      containsSuspiciousPayload(sanitizedForm.area) ||
+      containsSuspiciousPayload(sanitizedForm.message)
+    ) {
+      console.warn('[Security] Suspicious payload blocked client-side')
+      setErrors({ message: 'Conteúdo suspeito detectado. Remova caracteres especiais.' })
+      return
+    }
 
+    // ── Layer 7: Validation ────────────────────────────────────────
+    const errs = validate(sanitizedForm)
+    if (Object.keys(errs).length) {
+      setErrors(errs)
+      return
+    }
+
+    // ── Layer 8: Send with security payload ────────────────────────
     setIsSubmitting(true)
-    await new Promise(r => setTimeout(r, 1400))
-    setSubmitted(true)
-    setIsSubmitting(false)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...sanitizedForm,
+          _csrf: csrfToken,
+          _ts: formMountTs.current,
+          _fp: getBrowserFingerprint(),
+        }),
+      })
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}))
+        throw new Error(data.error || 'Falha ao enviar mensagem')
+      }
+
+      setSubmitted(true)
+      setToastVisible(true)
+      lastSubmitRef.current = Date.now()
+      playSuccessChime()
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Não foi possível enviar sua mensagem.'
+      setErrors({ message: msg })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -225,16 +319,42 @@ export default function CtaFinal() {
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
-                  {/* Honeypot field for bot spam blocking */}
+                  {/* ── Honeypot #1: standard text field ── */}
                   <input
                     type="text"
-                    name="b_honey"
-                    value={honeypot}
-                    onChange={(e) => setHoneypot(e.target.value)}
-                    style={{ display: 'none' }}
+                    name="b_company"
+                    value={honey1}
+                    onChange={(e) => setHoney1(e.target.value)}
+                    style={{ position: 'absolute', left: '-9999px', top: '-9999px', height: 0, width: 0, opacity: 0 }}
                     tabIndex={-1}
                     autoComplete="off"
+                    aria-hidden="true"
                   />
+                  {/* ── Honeypot #2: "website" URL field ── */}
+                  <input
+                    type="url"
+                    name="b_website"
+                    value={honey2url}
+                    onChange={(e) => setHoney2url(e.target.value)}
+                    style={{ position: 'absolute', left: '-9999px', top: '-9999px', height: 0, width: 0, opacity: 0 }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+                  {/* ── Honeypot #3: checkbox that must remain unchecked ── */}
+                  <input
+                    type="checkbox"
+                    name="b_agree"
+                    checked={honey3Agree}
+                    onChange={(e) => setHoney3Agree(e.target.checked)}
+                    style={{ position: 'absolute', left: '-9999px', top: '-9999px', height: 0, width: 0, opacity: 0 }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+
+                  {/* Hidden CSRF token reference (invisible to users) */}
+                  <span aria-hidden="true" style={{ display: 'none' }}>{csrfToken}</span>
 
                   <div className="mb-2">
                     <h3 className="font-display text-2xl font-semibold text-[#1A1A1A] mb-1">Entrar em contato</h3>
@@ -328,7 +448,7 @@ export default function CtaFinal() {
                   <div className="flex items-center justify-center gap-1.5 text-neutral-400 mt-2 select-none pointer-events-none">
                     <Lock size={12} className="shrink-0" />
                     <p className="text-xs">
-                      Informações tratadas com total confidencialidade.
+                      Ambiente seguro com criptografia de ponta a ponta
                     </p>
                   </div>
                 </form>
@@ -338,6 +458,14 @@ export default function CtaFinal() {
 
         </div>
       </div>
+
+      {/* ─── TOAST NOTIFICATION ─── */}
+      <Toast
+        show={toastVisible}
+        message="Mensagem enviada com sucesso!"
+        submessage="Retornaremos em até 24 horas úteis. Fique atento ao seu e-mail e telefone."
+        onClose={closeToast}
+      />
     </section>
   )
 }

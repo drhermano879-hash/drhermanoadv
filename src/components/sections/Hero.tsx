@@ -1,7 +1,12 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, MapPin } from 'lucide-react'
+import logoImg from '@/assets/logo/hsvermelho-semsombra.webp'
+import bgHeroImg from '@/assets/background-hero.webp'
 
 export default function Hero() {
+  const [isLogoHovered, setIsLogoHovered] = useState(false)
+
   const whatsappNumber = '557136218023'
   const messageText = 'Olá! Gostaria de iniciar uma consulta com um especialista.'
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`
@@ -114,39 +119,104 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ─── INTEGRATED BACKGROUND IMAGE (Full cover on mobile, 66% width on desktop) ─── */}
+      {/* ─── INTEGRATED BACKGROUND PANEL (66% width on desktop) ─── */}
       <div 
         className="absolute inset-y-0 right-0 w-full lg:w-[66%] z-0 overflow-hidden"
         aria-hidden="true"
       >
-        {/* Animated Image Wrapper */}
-        <motion.div
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full h-full"
-        >
-          <img
-            src="/hero.webp"
-            alt="Escritório Hermano Sousa Advogados"
-            className="w-full h-full object-cover object-center lg:object-right"
-            style={{ minHeight: '100vh' }}
-          />
-        </motion.div>
+        {/* Real Lobby Wall Backdrop Image - Base Level */}
+        <img
+          src={bgHeroImg}
+          alt="Escritório Hermano Sousa Advogados"
+          className="w-full h-full object-cover object-center lg:object-right"
+          style={{ minHeight: '100vh' }}
+        />
+
+        {/* Real Lobby Wall Backdrop Image - Intensified Light Level (Hover state) */}
+        <img
+          src={bgHeroImg}
+          alt="Escritório Hermano Sousa Advogados - Intensificado"
+          className="absolute inset-0 w-full h-full object-cover object-center lg:object-right"
+          style={{
+            minHeight: '100vh',
+            filter: 'brightness(1.22) contrast(1.05) saturate(1.06)',
+            opacity: isLogoHovered ? 1 : 0,
+            transition: 'opacity 800ms cubic-bezier(0.25, 1, 0.5, 1)',
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* ── Left-edge soft fade into text column ── */}
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#FDFAF6]/50 to-transparent pointer-events-none" />
+
+        {/* ── 3D Monogram — hover triggers light intensification ── */}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+            className="relative flex items-center justify-center select-none cursor-default"
+            onMouseEnter={() => setIsLogoHovered(true)}
+            onMouseLeave={() => setIsLogoHovered(false)}
+          >
+            {/* Wall backlight halo — diffuse, intensifies on hover */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                width: '150%',
+                height: '150%',
+                background:
+                  'radial-gradient(circle, rgba(255,220,140,0.16) 0%, rgba(212,175,55,0.06) 35%, transparent 68%)',
+                filter: 'blur(36px)',
+                opacity: isLogoHovered ? 1 : 0.45,
+                transition: 'opacity 800ms cubic-bezier(0.25, 1, 0.5, 1)',
+              }}
+            />
+
+            {/* Monogram with physical drop-shadows (spacer-pin mount effect) */}
+            <div
+              className="relative w-[240px] sm:w-[300px] md:w-[360px] lg:w-[420px] xl:w-[460px] aspect-square flex items-center justify-center"
+              style={{
+                transform: isLogoHovered ? 'scale(1.015)' : 'scale(1)',
+                transition: 'transform 800ms cubic-bezier(0.25, 1, 0.5, 1)',
+              }}
+            >
+              <img
+                src={logoImg}
+                alt="Monograma HS"
+                className="w-full h-full object-contain"
+                style={{
+                  filter: isLogoHovered
+                    ? [
+                        'drop-shadow(2px 5px 3px rgba(0,0,0,0.18))',
+                        'drop-shadow(8px 16px 14px rgba(26,0,0,0.22))',
+                        'drop-shadow(22px 44px 34px rgba(0,0,0,0.12))',
+                      ].join(' ')
+                    : [
+                        'drop-shadow(1px 2px 2px rgba(0,0,0,0.10))',
+                        'drop-shadow(5px 10px 8px rgba(26,0,0,0.16))',
+                        'drop-shadow(16px 32px 26px rgba(0,0,0,0.09))',
+                      ].join(' '),
+                  transition: 'filter 800ms cubic-bezier(0.25, 1, 0.5, 1)',
+                }}
+              />
+            </div>
+          </motion.div>
+        </div>
 
         {/* Mobile Overlay: Solid/Semi-transparent Cream to protect readability */}
         <div 
-          className="absolute inset-0 bg-[#FDFAF6]/90 lg:hidden pointer-events-none" 
+          className="absolute inset-0 bg-[#FDFAF6]/94 lg:hidden pointer-events-none" 
         />
 
         {/* Desktop Overlay: Very wide gradient fade-left starting early from the center */}
         <div 
-          className="hidden lg:block absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-[#FDFAF6] via-[#FDFAF6]/50 to-transparent pointer-events-none" 
+          className="hidden lg:block absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-[#FDFAF6] via-[#FDFAF6]/75 to-transparent pointer-events-none" 
         />
 
         {/* Bottom Fade Mask (to blend with the next section) */}
         <div 
-          className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#FDFAF6] via-[#FDFAF6]/40 to-transparent pointer-events-none" 
+          className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#FDFAF6] via-[#FDFAF6]/50 to-transparent pointer-events-none" 
         />
       </div>
     </section>
