@@ -195,20 +195,39 @@ export default async function handler(
     const cleanArea = area ? sanitize(area) : 'Não informada'
     const cleanMessage = sanitize(message)
 
+    const now = new Date().toLocaleString('pt-BR')
+
+    // Plain-text fallback — critical for Gmail deliverability (reduces spam score)
+    const plainText = [
+      `NOVO CONTATO — SITE HERMANO SOUSA ADVOGADOS`,
+      `Data: ${now}`,
+      ``,
+      `Nome: ${name}`,
+      `E-mail: ${email}`,
+      `Telefone: ${phone || '—'}`,
+      `Área de Interesse: ${area || 'Não informada'}`,
+      ``,
+      `--- Mensagem ---`,
+      message,
+      ``,
+      `Hermano Sousa Advogados Associados · Site Institucional`,
+    ].join('\n')
+
     const { data, error } = await resend.emails.send({
-      from: 'Contato Site <contato@hermanosousaadv.com.br>',
+      from: 'Hermano Sousa Advogados <contato@hermanosousaadv.com.br>',
       to: ['drhermano879@gmail.com'],
-      subject: `Novo contato do site — ${cleanArea}`,
+      subject: `[Site] Novo contato de ${name} — ${area || 'Sem área'}`,
       replyTo: email, // original (already validated) email
+      text: plainText,
       html: `
         <!DOCTYPE html>
-        <html>
-          <head><meta charset="utf-8"></head>
+        <html lang="pt-BR">
+          <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
           <body style="font-family:'Inter',system-ui,sans-serif;background:#FDFAF6;margin:0;padding:32px 24px;">
             <table style="max-width:560px;margin:0 auto;width:100%;">
               <tr><td style="border-bottom:1px solid #E5E0D8;padding-bottom:20px;">
                 <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;color:#800000;margin:0;">Novo Contato — Site</h1>
-                <p style="font-size:13px;color:#828282;margin:4px 0 0;">${new Date().toLocaleString('pt-BR')}</p>
+                <p style="font-size:13px;color:#828282;margin:4px 0 0;">${now}</p>
               </td></tr>
               <tr><td style="padding:24px 0;">
                 <div style="margin-bottom:16px;">
