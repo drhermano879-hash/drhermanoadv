@@ -91,6 +91,7 @@ export default function CtaFinal() {
   const [csrfToken] = useState(generateCsrfToken)
   const formMountTs = useRef<string>('')
   const lastSubmitRef = useRef(0)
+  const lastWhatsappUrlRef = useRef('')
   const COOLDOWN_MS = 8_000 // minimum 8 seconds between submissions
 
   useEffect(() => {
@@ -167,11 +168,29 @@ export default function CtaFinal() {
       return
     }
 
-    // ── Layer 8: Send with security payload ────────────────────────
+    // ── Layer 8: Send with security payload & WhatsApp Redirect ────
     setIsSubmitting(true)
 
     try {
-      const response = await fetch('/api/contact', {
+      const whatsappNumber = '557136218023'
+      const cleanPhone = sanitizedForm.phone ? sanitizedForm.phone : 'Não informado'
+      const textMessage = [
+        `Olá! Gostaria de iniciar um atendimento jurídico.`,
+        ``,
+        `*Nome:* ${sanitizedForm.name}`,
+        `*E-mail:* ${sanitizedForm.email}`,
+        `*Telefone:* ${cleanPhone}`,
+        `*Área de Interesse:* ${sanitizedForm.area || 'Não informada'}`,
+        ``,
+        `*Situação / Dúvida:*`,
+        sanitizedForm.message
+      ].join('\n')
+
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(textMessage)}`
+      lastWhatsappUrlRef.current = whatsappUrl
+
+      // Fire the API email dispatch in the background (non-blocking)
+      fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -180,19 +199,19 @@ export default function CtaFinal() {
           _ts: formMountTs.current,
           _fp: getBrowserFingerprint(),
         }),
+      }).catch((apiErr) => {
+        console.warn('[API Background Send Error]', apiErr)
       })
 
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}))
-        throw new Error(data.error || 'Falha ao enviar mensagem')
-      }
+      // Open WhatsApp in a new tab
+      window.open(whatsappUrl, '_blank')
 
       setSubmitted(true)
       setToastVisible(true)
       lastSubmitRef.current = Date.now()
       playSuccessChime()
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Não foi possível enviar sua mensagem.'
+      const msg = err instanceof Error ? err.message : 'Não foi possível iniciar o contato pelo WhatsApp.'
       setErrors({ message: msg })
     } finally {
       setIsSubmitting(false)
@@ -302,17 +321,30 @@ export default function CtaFinal() {
           >
             <div className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-neutral-200/40">
               {submitted ? (
-                <div className="flex flex-col items-center text-center gap-6 py-12">
+                <div className="flex flex-col items-center text-center gap-6 py-10">
                   <CheckCircle size={36} className="text-[#800000]" />
                   <div>
-                    <h3 className="font-display text-2xl font-semibold text-[#1A1A1A] mb-2">Mensagem recebida.</h3>
-                    <p className="text-neutral-500 text-sm leading-relaxed font-light">Retornaremos em até 24 horas úteis.</p>
+                    <h3 className="font-display text-2xl font-semibold text-[#1A1A1A] mb-2">Pronto para conversar!</h3>
+                    <p className="text-neutral-500 text-sm leading-relaxed font-light mb-5">
+                      Redirecionamos você para o WhatsApp do escritório. Se a janela não abrir automaticamente, clique no botão abaixo:
+                    </p>
+                    <a
+                      href={lastWhatsappUrlRef.current || `https://wa.me/557136218023`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebd59] text-white text-sm font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 shadow-sm hover:shadow"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                      </svg>
+                      Abrir Conversa no WhatsApp
+                    </a>
                   </div>
                   <button
                     onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', area: '', message: '' }) }}
-                    className="text-sm text-[#800000] hover:underline cursor-pointer"
+                    className="text-xs text-neutral-400 hover:text-[#800000] hover:underline cursor-pointer mt-4"
                   >
-                    Enviar nova mensagem
+                    Enviar outra mensagem
                   </button>
                 </div>
               ) : (
@@ -436,10 +468,10 @@ export default function CtaFinal() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                         </svg>
-                        <span>Processando envio seguro...</span>
+                        <span>Redirecionando...</span>
                       </div>
                     ) : (
-                      <><Send size={13} />Enviar mensagem</>
+                      <><Send size={13} />Iniciar Contato via WhatsApp</>
                     )}
                   </button>
 
