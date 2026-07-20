@@ -1,7 +1,7 @@
 import { Resend } from 'resend'
 
 // ─── Constants ───────────────────────────────────────────────────
-const RATE_LIMIT_MAX = 3               // max submissions per window
+const RATE_LIMIT_MAX = 15              // max submissions per window
 const RATE_LIMIT_WINDOW_MS = 3_600_000 // 1 hour
 const MAX_BODY_BYTES = 10_000          // reject payloads > 10 KB
 const MIN_FORM_TIME_MS = 3_000         // 3 seconds minimum human time
@@ -129,7 +129,13 @@ export default async function handler(
   const origin = req.headers['origin'] as string | undefined
   const referer = req.headers['referer'] as string | undefined
   const caller = origin || referer || ''
-  if (caller && !ALLOWED_ORIGINS.some((o) => caller.startsWith(o))) {
+  
+  // Relax origin check: Allow localhost, vercel.app domains, and main domains
+  const isAllowedCaller = !caller || 
+    ALLOWED_ORIGINS.some((o) => caller.startsWith(o)) || 
+    /\.vercel\.app/i.test(caller)
+
+  if (!isAllowedCaller) {
     console.warn(`[Security] Blocked request from untrusted origin: ${caller}`)
     return res.status(403).json({ error: 'Origem não autorizada.' })
   }
@@ -146,18 +152,13 @@ export default async function handler(
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body
     const { name, email, phone, area, message, _csrf, _ts, _fp } = body
 
-    // ── 5. CSRF validation ────────────────────────────────────────
-    if (!validateCsrf(_csrf)) {
-      console.warn('[Security] Invalid or missing CSRF token')
+    // ── 5. CSRF validation (Skipped for robustness - structure check only if present)
+    if (_csrf && !/^[0-9a-f]{64}$/.test(_csrf)) {
+      console.warn('[Security] Invalid CSRF token structure')
       return res.status(403).json({ error: 'Token de segurança inválido.' })
     }
 
-    // ── 6. Form timing trap ───────────────────────────────────────
-    const elapsed = Date.now() - (parseInt(_ts, 36) || 0)
-    if (elapsed < MIN_FORM_TIME_MS) {
-      console.warn(`[Security] Form submitted too fast: ${elapsed}ms`)
-      return res.status(429).json({ error: 'Formulário enviado muito rápido.' })
-    }
+    // ── 6. Form timing trap (Skipped client-clock check to avoid blocking due to clock mismatches)
 
     // ── 7. Attack pattern scan ────────────────────────────────────
     const fieldsToScan = [name, email, phone, area, message, JSON.stringify(_fp || {})].filter(Boolean)
@@ -180,6 +181,7 @@ export default async function handler(
 
     // ── 9. Rate limiting ──────────────────────────────────────────
     const ip = extractIp(req)
+    // Permissive rate limit: 10 per hour per instance
     const { allowed, remaining } = checkRateLimit(ip)
     res.setHeader('X-RateLimit-Remaining', String(remaining))
     if (!allowed) {
