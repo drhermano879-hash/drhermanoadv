@@ -111,6 +111,7 @@ export default function Footer() {
                 { label: 'Direito Previdenciário', slug: 'direito-previdenciario' },
                 { label: 'Direito Trabalhista', slug: 'direito-trabalhista' },
                 { label: 'Direito do Consumidor', slug: 'direito-do-consumidor' },
+                { label: 'Direito de Família e Sucessões', slug: 'direito-de-familia' },
                 { label: 'Direito Civil', slug: 'direito-civil' },
                 { label: 'Direito Empresarial', slug: 'direito-empresarial' }
               ].map((area) => (

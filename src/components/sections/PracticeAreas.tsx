@@ -6,6 +6,7 @@ const areas = [
   { slug: 'direito-previdenciario', label: 'Previdenciário', description: 'Aposentadorias, benefícios por incapacidade, BPC/LOAS, pensão por morte, revisões e planejamento previdenciário.' },
   { slug: 'direito-trabalhista', label: 'Trabalhista', description: 'Verbas rescisórias, horas extras, vínculo de emprego, adicionais, acidentes de trabalho, estabilidade e rescisão indireta.' },
   { slug: 'direito-do-consumidor', label: 'Consumidor', description: 'Cobranças indevidas, negativação irregular, problemas bancários, contratos abusivos, falhas de serviço e indenizações.' },
+  { slug: 'direito-de-familia', label: 'Família e Sucessões', description: 'Divórcio, inventário, partilha de bens, pensão alimentícia, guarda de filhos e planejamento sucessório.' },
   { slug: 'direito-civil', label: 'Cível', description: 'Indenizações, cobranças, contratos, responsabilidade civil, obrigações, acordos e conflitos patrimoniais.' },
   { slug: 'direito-empresarial', label: 'Empresarial', description: 'Contratos, cobranças, recuperação de crédito, prevenção de riscos, consultoria jurídica e demandas comerciais.' },
 ]

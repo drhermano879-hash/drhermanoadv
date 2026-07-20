@@ -59,7 +59,7 @@ const areas = [
   'Direito Previdenciário',
   'Direito Trabalhista',
   'Direito do Consumidor',
-  'Direito de Família',
+  'Direito de Família e Sucessões',
   'Direito Civil',
   'Direito Empresarial',
   'Outro'

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
+
 import type { IncomingMessage, ServerResponse } from 'http'
 
 // ─── Dev-only local API handler ───────────────────────────────────
@@ -40,16 +41,9 @@ function localApiPlugin() {
             return
           }
 
-          // ── Send via Resend ─────────────────────────────────────
-          const apiKey = process.env.RESEND_API_KEY
-          console.log('[Local API] RESEND_API_KEY present:', !!apiKey, 'length:', apiKey?.length)
-          if (!apiKey) {
-            console.error('[Local API] RESEND_API_KEY não encontrada no .env!')
-            res.statusCode = 500
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify({ error: 'Chave da API não configurada. Crie um arquivo .env na raiz do projeto.' }))
-            return
-          }
+          // ── API key para desenvolvimento local ─────────────────
+          const apiKey = 're_bE8MC866_2BYswH79Y3LtjJRuiYmvgtzG'
+          console.log('[Local API] Usando chave Resend para dev local')
 
           const { Resend } = await import('resend')
           const resend = new Resend(apiKey)
