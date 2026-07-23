@@ -39,7 +39,7 @@ export default function Founder() {
             {/* Copy paragraphs for SEO & Google indexing */}
             <div className="text-neutral-500 text-sm sm:text-base leading-relaxed font-light text-justify flex flex-col gap-4">
               <p>
-                O escritório foi fundado pelo Dr. Hermano Francisco de Sousa, advogado com mais de 30 anos de atuação, bacharel em Direito pela UNIFAMEC e mestre em Administração pela UCSAL.
+                O escritório foi fundado pelo Dr. Hermano Francisco de Sousa, advogado com mais de 30 anos de atuação, bacharel em Direito pela UCSAL, pós-graduado em Modernização de Sistemas Administrativos pela UFBA e mestre em Administração pela UNEB.
               </p>
               <p>
                 Com trajetória marcada pelo compromisso social, possui forte atuação no Direito Previdenciário, especialmente em demandas envolvendo BPC/LOAS, benefícios por incapacidade, aposentadorias, pensões e revisões previdenciárias. Também dedica sua prática profissional à defesa dos trabalhadores no Direito do Trabalho.
